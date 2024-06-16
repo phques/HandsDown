@@ -37,7 +37,9 @@ void process_APP_MENU(keyrecord_t *record) {
             tap_code16(RSFT(KC_TAB)); // switch app
         else
             tap_code(KC_TAB); // switch app
-        layer_on(L_NAV);
+        //pq this leaves the current layer on, so KC_APP pressed from L_NAV messes up
+        //layer_on(L_NAV);
+        layer_move(L_NAV);
         appmenu_timer = timer_read(); // (re)start timing hold for keyup below
         return; // handled this record.
     }

@@ -12,4 +12,4 @@ void disable_caps_word(void);
 void toggle_caps_word(void);
 
 // Function to be put in process user
-bool process_caps_word(uint16_t keycode, const keyrecord_t *record);
+bool my_process_caps_word(uint16_t keycode, const keyrecord_t *record);

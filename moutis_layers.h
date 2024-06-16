@@ -1,6 +1,6 @@
 //
 //  moutis_layers.h
-//  
+//
 //
 //  Created by Alan on 6/23/23.
 //
@@ -259,10 +259,10 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LV_LT1 SK_SCLP
 #define LV_LT0 SK_PSTM
 #define LV_RT0 SK_DOCBEG
-#define LV_RT1 KC_HOME
+#define LV_RT1 SK_LINEBEG   //pq KC_HOME
 #define LV_RT2 KC_UP
 #define LV_RT3 KC_PGUP
-#define LV_RT4 SK_PARAPRV
+#define LV_RT4 SK_WINPRV    //pq SK_PARAPRV
 #define LV_RT5 KC_TRNS
 
 #define LV_LM5 KC_VOLU
@@ -289,10 +289,10 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LV_RBB KC_TAB
 #define LV_RBA KC_ESC
 #define LV_RB0 SK_DOCEND
-#define LV_RB1 KC_END
+#define LV_RB1 SK_LINEEND   //pq KC_END
 #define LV_RB2 KC_DOWN
 #define LV_RB3 KC_PGDN
-#define LV_RB4 SK_PARANXT
+#define LV_RB4 SK_WINNXT    //pq SK_PARANXT
 #define LV_RB5 KC_TRNS
 
 #define LV_LH5 SK_ZOOMOUT // also left encoder CCW
@@ -314,8 +314,8 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 /*   L_CFG Keyboard Configuration (left) and Media Settings (right)
          ╭──────────────────────────────────────────╮                            ╭───────────────────────────────────────────────╮
       __ │  SK_Lux  SK_Win  SK_Mac  QK_RBT  SK_KILL │                            │ (C(A(del)))KC_NUM  KC_EJCT KC_NO   SK_ZOOMRST │ RGB_MOD
- RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU KC_BRIU |                            | KC_NO     KC_MPRV  KC_MUTE KC_MNXT SK_ZOOMOUT │ RGB_SAI
- RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD KC_BRID │ RGB_VAD  __    __  RGB_SAD │ KC_NO     KC_MRWD  KC_MPLY KC_MFFD SK_ZOOMIN  │ RGB_HUD
+ RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU KC_BRIU |                            | SH_ON     KC_MPRV  KC_MUTE KC_MNXT SK_ZOOMOUT │ RGB_SAI
+ RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD KC_BRID │ RGB_VAD  __    __  RGB_SAD │ SH_OFF    KC_MRWD  KC_MPLY KC_MFFD SK_ZOOMIN  │ RGB_HUD
          ╰──────────────────╮   __     __   EE_CLR  │ __                     __  │   __       __       __     ╭──────────────────╯
                     __   __ ╰───────────────────────╯                            ╰────────────────────────────╯   __     __
 */
@@ -332,20 +332,20 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_RT3 KC_NO
 #define LC_RT4 SK_ZOOMRST
 #define LC_RT5 RGB_MOD
- 
+
 #define LC_LM5 RGB_VAI
 #define LC_LM4 HD_AdaptKeyToggle
 #define LC_LM3 HD_L_QWERTY
 #define LC_LM2 HD_L_ALPHA
 #define LC_LM1 KC_VOLU
 #define LC_LM0 KC_BRIU
-#define LC_RM0 KC_NO
+#define LC_RM0 SH_ON    //##pq swap hands ON KC_NO
 #define LC_RM1 KC_MPRV
 #define LC_RM2 KC_MUTE
 #define LC_RM3 KC_MNXT
 #define LC_RM4 SK_ZOOMOUT
 #define LC_RM5 RGB_SAI
- 
+
 #define LC_LB5 RGB_HUI
 #define LC_LB4 QK_BOOT
 #define LC_LB3 AG_SWAP
@@ -356,7 +356,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_LBB SK_ZOOMIN
 #define LC_RBB SK_ZOOMOUT
 #define LC_RBA RGB_SAD
-#define LC_RB0 KC_NO
+#define LC_RB0 SH_OFF   //##pq swap hands OFF KC_NO
 #define LC_RB1 KC_MRWD
 #define LC_RB2 KC_MPLY
 #define LC_RB3 KC_MFFD

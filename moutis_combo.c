@@ -4,7 +4,7 @@
  Tailored for Hands Down Neu related variations
  Others have been removed, but I'll try to get everything in here soon enough.
  Finally getting to the last of imagined features that spurred Hands Down design!
-  
+
  */
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
@@ -54,7 +54,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // queue for matrix_scan_user_process_combo
                 break;
 
-                
+
 //            case HC_CAPG: // turn on capsword for Gold
             case HC_CAPW: // turn on capsword (automatically turns off on delimiter)
                 toggle_caps_word();
@@ -68,7 +68,7 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 tap_code16(KC_U); //
                 combo_on = combo_index; // if held, delete the 'u' in matrix_scan_user_process_combo
                 break;
-                
+
 /*
  * H digraphs here
  */
@@ -127,7 +127,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // may add "e" in matrix_scan_user_process_combo
                 break;
             case HC_CIRC:
-                 tap_code16(A(KC_6)); // this should use semkeys
+                 //pq, not working on my Mac, neither US international nor Canadian keyboards
+                 //tap_code16(A(KC_6)); // this should use semkeys
+                 tap_code16(A(KC_I)); // this should use semkeys
                 combo_on = combo_index; // may add "e" in matrix_scan_user_process_combo
                 break;
             case HC_MACR:
@@ -378,7 +380,7 @@ ADD_HERE:
 
 #endif // EN_PRONOUN_COMBOS_ALL
 #endif // EN_PRONOUN_COMBOS
-                
+
 #ifdef JP_MODE_ENABLE
         // Don't process these
 #ifdef JP_YOUON_COMBOS
@@ -548,9 +550,9 @@ ADD_HERE:
 #endif // JP_YOUON_COMBOS_ALL
 #endif // JP_YOUON_COMBOS
 #endif // JP_MODE_ENABLE
-                
-                
-                
+
+
+
         } // end switch (combo_index)
         if (combo_on) linger_timer = timer_read(); // start timing for linger process
         // should GUARD this with return instead
@@ -598,7 +600,7 @@ ADD_HERE:
                 case HC_PSTE: // not held, so simple paste
                     tap_SemKey(SK_PSTE);
                     break;
-    
+
                 case HC_AT:
                     tap_code16(KC_AT); //
                     break;
@@ -650,7 +652,7 @@ ADD_HERE:
                     tap_code(KC_8);
                     tap_code(KC_9);
                     break;
-                                        
+
                 case HC_TYPE_LEFTCOMBO:
 #ifdef JP_MODE_ENABLE
                     if (IS_ENGLISH_MODE) {
@@ -910,7 +912,7 @@ void matrix_scan_user_process_combo() {  // called from matrix_scan_user if comb
                     tap_code16(KC_N); // this should use semkeys? ñ
                     break;
 
-                    
+
                 case HC_TYPE_LEFTCOMBO: // already "LeftComboTap" has been sent; if held, undo and send "LeftComboHeld"
 #ifdef JP_MODE_ENABLE
                     if (IS_ENGLISH_MODE) {

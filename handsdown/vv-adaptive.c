@@ -1,13 +1,13 @@
 /*
  Adaptive Keys
  Called from within process_record_user
- 
+
  Tailored for HD Vibranium-v (vv)
- 
+
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
     which have a shorter keydown threshhold (COMBO_TERM).
- 
+
  */
 
 
@@ -167,7 +167,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_G: // GK = LK (74x more frequent)
                     tap_code(KC_BSPC);
                     tap_code(KC_L);
-                    return_state = false; // done.
                     break;
            }
             break;
@@ -200,9 +199,9 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 
 
 /*
-// right hand adaptives
+   right hand adaptives
 */
-            
+
         case KC_SLSH:
         case KC_H: // H precedes a vowel much more often than it follows (thanks, Ancient Greek!)
             switch (prior_keycode) { // maybe OK? What about xxR? resulting in a SFB on thumb?
@@ -238,6 +237,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
+        // pq this will never be true since we are masking mods and KC_DQUO is shift-'
         case KC_DQUO:
             switch (prior_keycode) {
                 case KC_B: //
@@ -246,6 +246,18 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
                 case KC_DOT:
                     send_string("edu");
+                    return_state = false; // done.
+                    break;
+            }
+            break;
+        case KC_J:
+            switch (prior_keycode) {
+                case KC_B: //
+                    tap_code(KC_Y); // BJ = BY (eliminate scissor on ring finger BY is 6x BJ)
+                    return_state = false; // done.
+                    break;
+                case KC_DOT:
+                    send_string("net");
                     return_state = false; // done.
                     break;
             }

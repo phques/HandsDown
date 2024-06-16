@@ -7,19 +7,19 @@
 
  Phase 1: simple 1:1 keystroke mapping
    complete.
- 
+
  Phase 2: Requires w/Sevanteri's early combos.
  Integrate all combo and keymap processing so they both queue
  SemKeys to be handled in process_record_user, reducing the code
  and simplifying maintenance.
   -- IN PROCESS --
- 
+
  Phase 3: expand to multi-keystrokes, which would enable sending
  different compose sequences based on platform (diacritics),
  and possibly facilitate editor support (vim/emacs)?
- 
+
  Phase 4: use in Hands Down Polyglot.
- 
+
  */
 
 
@@ -53,8 +53,8 @@ void tap_SemKey(uint16_t semkeycode) {
     }
 }
 */
-    
-    
+
+
 /*
 * based on the table at:
 * https://en.wikipedia.org/wiki/Table_of_keyboard_shortcuts
@@ -93,8 +93,11 @@ const uint16_t SemKeys_t[SemKeys_COUNT - SK_KILL][OS_count] = {
     [SK_WORDNXT - SK_KILL] = {A(KC_RIGHT),C(KC_RIGHT),C(KC_RIGHT)}, // WORD RIGHT
     [SK_DOCBEG - SK_KILL] = {G(KC_UP),C(KC_HOME),C(KC_HOME)}, // Go to start of document
     [SK_DOCEND - SK_KILL] = {G(KC_DOWN),C(KC_END),C(KC_END)}, // Go to end of document
-    [SK_LINEBEG - SK_KILL] = {G(KC_DOWN),C(KC_END),C(KC_END)}, // Go to beg of line
-    [SK_LINEEND - SK_KILL] = {G(KC_DOWN),C(KC_END),C(KC_END)}, // Go to end of line
+// pq not correct, fixed Mac and Win (only tested on Mac)
+//    [SK_LINEBEG - SK_KILL] = {G(KC_DOWN),C(KC_END),C(KC_END)}, // Go to beg of line
+//    [SK_LINEEND - SK_KILL] = {G(KC_DOWN),C(KC_END),C(KC_END)}, // Go to end of line
+    [SK_LINEBEG - SK_KILL] = {G(KC_LEFT),KC_HOME,C(KC_END)}, // Go to beg of line
+    [SK_LINEEND - SK_KILL] = {G(KC_RIGHT),KC_END,C(KC_END)}, // Go to end of line
     [SK_PARAPRV - SK_KILL] = {A(KC_UP),C(KC_UP),C(KC_UP)}, // Go to previous paragraph
     [SK_PARANXT - SK_KILL] = {A(KC_DOWN),C(KC_DOWN),C(KC_DOWN)}, // Go to next paragraph
     [SK_HISTPRV - SK_KILL] = {G(KC_LBRC),A(KC_LEFT),A(KC_LEFT)}, // BROWSER BACK
@@ -211,7 +214,7 @@ bool process_semkey(uint16_t keycode, const keyrecord_t *record) {
                 default: // default keydown event (from the semkey table)
                     register_SemKey(keycode);
 /* Add the BCD decode for Win compose key stuff here
- 
+
 */
                     break;
             }

@@ -76,7 +76,7 @@ void toggle_caps_word(void) {
 }
 
 // Called from process_record_user. assumes caps_word is on
-bool process_caps_word(uint16_t keycode, const keyrecord_t *record) {
+bool my_process_caps_word(uint16_t keycode, const keyrecord_t *record) {
 
     // Filter out the actual keycode from MT and LT keys.
     // This isn't working right. need to allow a layer to happen.
@@ -127,7 +127,7 @@ bool process_caps_word(uint16_t keycode, const keyrecord_t *record) {
             }
         disable_caps_word(); // didn't encounter a legit caps char, so off.
         return true;
-    } 
+    }
 /*
     else {
         switch (keycode) {

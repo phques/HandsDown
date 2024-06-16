@@ -1,15 +1,15 @@
 /*
 
  Set keyboard on host to ANSI (not ISO/JIS for now. will eventually invert this.)
- 
+
  */
 
-
+#include "moutis_casemods.h"
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     bool return_state = true;
     uint8_t  saved_mods;
-    
+
 
     saved_mods = get_mods(); // preserve mods
 
@@ -55,10 +55,23 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
 #endif // #ifdef ADAPTIVE_ENABLE
-    
+
+    // Do we need to filter multi-function keys?
+    switch (keycode) {
+        case QK_MOD_TAP ... QK_MOD_TAP_MAX:
+        case QK_LAYER_TAP ... QK_LAYER_TAP_MAX:
+#ifdef TAP_DANCE_ENABLE
+        case QK_TAP_DANCE ... QK_TAP_DANCE_MAX:
+#endif
+            if (!record->tap.count) // if not tapped yet…
+                return true; // let QMK do that first
+            keycode &= QK_BASIC_MAX; // mods & taps have been handled.
+    }
+
+
     // Do we turn off CAPS_WORD?
     if (caps_word_timer) {
-        if (!process_caps_word(keycode, record)) {
+        if (!my_process_caps_word(keycode, record)) {
             return false; // took care of that key
         }
     }
@@ -74,7 +87,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         process_APP_MENU(record);
         return false; // took care of that key
     }
-    
+
     // only process for SHIFT/ALT & no CTRL or GUI mods
     if (saved_mods & MOD_MASK_CG)  // CTRL or GUI/CMD?
         return true; // do default if CTRL or GUI/CMD are down
@@ -152,7 +165,7 @@ register_key_trap_and_return:
                     goto register_key_trap_and_return;
                 }
                 break;
-                
+
             case KC_LPRN:  // SHIFT = { (linger=(|))
                 if (!saved_mods) {
                     goto linger_and_return; // CAUTION: messing w/stack frame here!!
@@ -321,7 +334,7 @@ register_key_trap_and_return:
                     return_state = false; // don't do more with this record.
                 break;
             case KC_QUOT: // SHIFT = ], ALT=», ALT+SHIFT=›
-                
+
                 clear_keyboard(); // clean record to tinker with.
                 if (saved_mods & MOD_MASK_ALT) { // ALT (only) down?
                     if (saved_mods & MOD_MASK_SHIFT) { // SHFT too?
@@ -382,7 +395,7 @@ linger_and_return:
                 register_linger_key(keycode); // example of simple linger macro
                 return_state = false; // stop processing this record.
                 break;
-                
+
             case SK_Lux: // SINCE MAC IS MY LAYOUT DEFAULT switch to linux
                 user_config.OSIndex = OS_Lux; // for Linux Semkeys
 //                process_magic(QK_MAGIC_SWAP_CTL_GUI); // tell QMK to swap ctrl/gui
@@ -423,6 +436,10 @@ storeSettings:
                 eeconfig_update_user(user_config.raw); // Remember platform variables after powerdown
                 break;
 
+            case HD_CAPSWORD:
+                toggle_caps_word();
+                return_state = false; // don't do more with this record.
+                break;
 #endif // KEY_OVERRIDE_ENABLE
 
 
@@ -448,7 +465,7 @@ storeSettings:
         preprior_keycode = prior_keycode; // look back 2 keystrokes?
         prior_keycode = keycode; // this keycode is now stripped of mods+taps
 #endif
-        
+
     } else { // key up event
 //  when I can get this to work with HRMs properly, this will strictly enforce rolling.
 //        if (keycode == prior_keycode) // releasing adaptive?
@@ -490,8 +507,16 @@ storeSettings:
             case KC_LBRC:  //  [ (linger=[|])
             case KC_LCBR:  //  { (linger={|})
                 //if (!saved_mods) { //
-                    unregister_linger_key(); // stop lingering
+                    //pq, sometimes goes into infinite loop!
+                    // unregister_linger_key(); // stop lingering
+                    // return_state = false; // stop processing this record.
+                    unregister_linger_key();
+                    if (!key_trap) // did we override this earlier?
+                        break; // N: do normal thing
+                    unregister_code16(key_trap); //
+                    key_trap = 0;  // exit override state.
                     return_state = false; // stop processing this record.
+                    break;
                 //
                 break;
 
@@ -501,7 +526,14 @@ storeSettings:
             case KC_QUOT: // SHIFT = ], ALT=›, ALT+SHIFT=»
             case KC_DQUO: // SHIFT = [ (linger=[|]), ALT=‹, ALT+SHIFT=«
                 unregister_linger_key(); // stop any lingering
+                //pq, KC_BSLS '\' goes into infinite loop!
                 //unregister_code16(keycode); // may still need to handle this
+                // return_state = false; // stop processing this record.
+                // break;
+                if (!key_trap) // did we override this earlier?
+                    break; // N: do normal thing
+                unregister_code16(key_trap); //
+                key_trap = 0;  // exit override state.
                 return_state = false; // stop processing this record.
                 break;
 

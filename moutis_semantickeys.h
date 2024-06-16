@@ -9,19 +9,19 @@
 
  Phase 1: simple 1:1 keystroke mapping
    complete.
- 
+
  Phase 2: Requires w/Sevanteri's early combos.
  Integrate all combo and keymap processing so they both queue
  SemKeys to be handled in process_record_user, reducing the code
  and simplifying maintenance.
     complete.
- 
+
  Phase 3: expand to multi-keystrokes, which would enable sending
  different compose sequences based on platform (diacritics),
  and possibly facilitate support for other editors (vim/emacs)?
- 
+
  Phase 4: use in Hands Down Polyglot for all non-ascii glyphs
- 
+
  */
 
 
@@ -35,6 +35,7 @@ enum my_keycodes {
     HD_RGB_hue_up, // Hue +
     HD_RGB_hue_dn, // Hue +
 #endif
+    HD_CAPSWORD,
     SK_Mac,
     SK_Win,
     SK_Lux,
