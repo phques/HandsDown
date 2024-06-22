@@ -74,10 +74,11 @@ enum my_combos {
 //    HC_L2, // ex. x not on the map (remappable)?
 //    HC_L3, // ex. j not on the map (remappable)?
 
-    
+
 
     HC_OE, // Œ
     HC_AE, // Æ
+    HC_ING, // Æ
 /*
     HC_1E, // É acute
     HC_2E, // È grave
@@ -97,7 +98,7 @@ enum my_combos {
  */
 
 
-    
+
     //
     // ACTION COMBOS (ie, not simple combos as above)
     //
@@ -253,7 +254,7 @@ enum my_combos {
     PC_RPRN,
     PC_CLR,
     PC_AC,   // END OF DELAY BLOCK
-    
+
     HC_TYPE_LEFTCOMBO, // TYPE "LeftComboTapE" and hold for "LeftComboHeldE"
     HC_TYPE_RIGHTCOMBO, // TYPE "RightComboTapE" and hold for "RightComboHeldE"
 

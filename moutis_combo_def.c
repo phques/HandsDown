@@ -55,16 +55,28 @@ const uint16_t PROGMEM Hpste_combo[] = {HD_pste_keys, COMBO_END}; // paste (hold
 const uint16_t PROGMEM H_Left_combo[] = {HD_LT3, HD_LT2, HD_LT1, COMBO_END}; // TYPE LeftComboTapE
 const uint16_t PROGMEM H_Right_combo[] = {HD_RT1, HD_RT2, HD_RT3, COMBO_END}; // some demonstrator macro placeholder
 
+// pq, keeping bottom row the same
+const uint16_t PROGMEM H_CAPW_combo[] = {HD_RB3, HD_RB4, COMBO_END}; // CAPS WORD (on until word delimiter)
+const uint16_t PROGMEM F_CAPS_combo[] = {HD_RB2, HD_RB3, HD_RB4, COMBO_END}; // CAPS LOCK (on until hit again)
+
+#ifndef SWAPHANDS
 const uint16_t PROGMEM F_KILL_combo[] = {HD_RT3, HD_RT0, COMBO_END}; // KILL = Force quit OR CTRL-ALT-DEL
 const uint16_t PROGMEM F_SCLP_combo[] = {HD_LT2, HD_LT1, HD_LT0, COMBO_END}; // SCREEN shot SELECTION to clipboard
 const uint16_t PROGMEM F_SCAP_combo[] = {HD_LT3, HD_LT2, HD_LT1, HD_LT0, COMBO_END}; //  SCREEN shot SELECTION to file
 
-
-const uint16_t PROGMEM H_CAPW_combo[] = {HD_RB3, HD_RB4, COMBO_END}; // CAPS WORD (on until word delimiter)
-const uint16_t PROGMEM F_CAPS_combo[] = {HD_RB2, HD_RB3, HD_RB4, COMBO_END}; // CAPS LOCK (on until hit again)
 const uint16_t PROGMEM H_EISUU_combo[] = {HD_LM3, HD_LM2, HD_LM1, COMBO_END}; // KC_MHEN
 const uint16_t PROGMEM H_KANA_combo[] = {HD_RM3, HD_RM2, HD_RM1, COMBO_END}; // KC_HENK
 
+#else
+//pq swap hands
+const uint16_t PROGMEM F_KILL_combo[] = {HD_LT3, HD_LT0, COMBO_END}; // KILL = Force quit OR CTRL-ALT-DEL
+const uint16_t PROGMEM F_SCLP_combo[] = {HD_RT2, HD_RT1, HD_RT0, COMBO_END}; // SCREEN shot SELECTION to clipboard
+const uint16_t PROGMEM F_SCAP_combo[] = {HD_RT3, HD_RT2, HD_RT1, HD_RT0, COMBO_END}; //  SCREEN shot SELECTION to file
+
+const uint16_t PROGMEM H_EISUU_combo[] = {HD_RM3, HD_RM2, HD_RM1, COMBO_END}; // KC_MHEN
+const uint16_t PROGMEM H_KANA_combo[] = {HD_LM3, HD_LM2, HD_LM1, COMBO_END}; // KC_HENK
+
+#endif
 
 
 // Off map and other letter/symbol thingies typically on keyboard
@@ -73,6 +85,7 @@ const uint16_t PROGMEM H_KANA_combo[] = {HD_RM3, HD_RM2, HD_RM1, COMBO_END}; // 
 // should work for most Neu variations (Gold/Titanium/Rhodium/Vibranium)
 // Bronze/Silver/Platinum (C on right hand, H on left/thumb) may need changes...
 //
+#ifndef SWAPHANDS
 const uint16_t PROGMEM F_ESC_combo[] = {HD_LM4, HD_LM1, COMBO_END}; // ESCape
 const uint16_t PROGMEM Hndsh_combo[] = {HD_RB0, HD_RB1, COMBO_END}; // – n dash
 const uint16_t PROGMEM Hmdsh_combo[] = {HD_RB0, HD_RB2, COMBO_END}; // — m dash
@@ -103,10 +116,43 @@ const uint16_t PROGMEM Hmacr_combo[] = {HD_RM2, HD_RM4, COMBO_END}; // - macron 
 const uint16_t PROGMEM Hring_combo[] = {HD_RM1, HD_RM4, COMBO_END}; // ˚ ring (dead key)
 const uint16_t PROGMEM Hcedi_combo[] = {HD_LM4, HD_LM2, COMBO_END}; // ¸ cedille (dead key)
 //const uint16_t PROGMEM Hoslsh_combo[] = {HD_RB2, HD_LB0, COMBO_END}; // ø/Ø or Wh
+#else
+const uint16_t PROGMEM F_ESC_combo[] = {HD_RM4, HD_RM1, COMBO_END}; // ESCape
+const uint16_t PROGMEM Hndsh_combo[] = {HD_LB0, HD_LB1, COMBO_END}; // – n dash
+const uint16_t PROGMEM Hmdsh_combo[] = {HD_LB0, HD_LB2, COMBO_END}; // — m dash
+const uint16_t PROGMEM Htild_combo[] = {HD_LB1, HD_LB4, COMBO_END}; // ~ tilde (not the deadkey for eñye)
+const uint16_t PROGMEM Hunds_combo[] = {HD_LB1, HD_LB3, COMBO_END}; // _ underscore
+const uint16_t PROGMEM Hequal_combo[] = {HD_LB2, HD_LB3, COMBO_END}; // = equal (hold for %)
+//const uint16_t PROGMEM Hpercent_combo[] = {HD_LB3, HD_LB4, COMBO_END}; // % percent
+
+
+// spatially arranged characters and diacritics
+const uint16_t PROGMEM Hscln_combo[] = {HD_LM0, HD_LM1, COMBO_END}; // ; semicolon
+const uint16_t PROGMEM Hcoln_combo[] = {HD_LT1, HD_LT3, COMBO_END}; // : colon
+const uint16_t PROGMEM Hexlm_combo[] = {HD_LT1, HD_LT2, COMBO_END}; // !
+const uint16_t PROGMEM Hques_combo[] = {HD_LT2, HD_LT3, COMBO_END}; // ?
+const uint16_t PROGMEM Hdolr_combo[] = {HD_LT2, HD_LT4, COMBO_END}; // " DOUBLE QUOTE  // " hijacked for $
+const uint16_t PROGMEM Htic_combo[] = {HD_LT3, HD_LT4, COMBO_END}; // ` tic (not dead key grave)
+
+const uint16_t PROGMEM Hhash_combo[] = {HD_LT0, HD_LT2, COMBO_END}; // # HASH hijacked for §
+const uint16_t PROGMEM Hat_combo[] = {HD_LT0, HD_LT1, COMBO_END}; // @
+
+// spatially arranged diacritics
+const uint16_t PROGMEM Hdier_combo[] = {HD_LB1, HD_LB2, COMBO_END}; // ¨ dieresis (dead key)
+const uint16_t PROGMEM Henye_combo[] = {HD_RT4, HD_RT0, COMBO_END}; // ˜ enye (dead key) (ñ only?)
+const uint16_t PROGMEM Hacut_combo[] = {HD_LM1, HD_LM2, COMBO_END}; // ´ acute (dead key)é
+const uint16_t PROGMEM Hgrv_combo[] = {HD_LM2, HD_LM3, COMBO_END}; // ` grave (dead key)
+const uint16_t PROGMEM Hcirc_combo[] = {HD_LM1, HD_LM3, COMBO_END}; // ˆ circumflex (dead key)
+const uint16_t PROGMEM Hmacr_combo[] = {HD_LM2, HD_LM4, COMBO_END}; // - macron (dead key)
+const uint16_t PROGMEM Hring_combo[] = {HD_LM1, HD_LM4, COMBO_END}; // ˚ ring (dead key)
+const uint16_t PROGMEM Hcedi_combo[] = {HD_RM4, HD_RM2, COMBO_END}; // ¸ cedille (dead key)
+//const uint16_t PROGMEM Hoslsh_combo[] = {HD_LB2, HD_RB0, COMBO_END}; // ø/Ø or Wh
+
+#endif
 
 // Precomposed letters with diacritics (uses expanded Semantic Keys)
 // This could be a very large numper of comboos, as many as 35 for vowels
-// áàâåäā éèêe̊ëē íìîīï óòôo̊ōü úùûůūü 
+// áàâåäā éèêe̊ëē íìîīï óòôo̊ōü úùûůūü
 // two handed combos with home-row [p, r, m, i, l] + vowel
 // and many more for frequently used consonants
 // two handed combos top/bottom row vowel hand?
@@ -133,6 +179,7 @@ const uint16_t PROGMEM H_Sch_combo[] = {HD_Sch_keys, COMBO_END}; // TYPE "Sch"
 const uint16_t PROGMEM HOE_lig_combo[] = {HD_OE_lig_keys, COMBO_END}; // Œ
 const uint16_t PROGMEM HAE_lig_combo[] = {HD_AE_lig_keys, COMBO_END}; // Æ
 
+const uint16_t PROGMEM H_ing_combo[] = {HD_ing_keys, COMBO_END}; // Æ
 
 // Fast 4grams
 
@@ -308,6 +355,7 @@ combo_t key_combos[] = {
 
     [HC_OE] = COMBO_ACTION(HOE_lig_combo),  // Œ
     [HC_AE] = COMBO_ACTION(HAE_lig_combo),  // Æ
+    [HC_ING] = COMBO_ACTION(H_ing_combo),  // Æ
 
 // Japanese contract consonants
 #ifdef JP_MODE_ENABLE  // Japanese contracted sounds as combos
@@ -380,7 +428,7 @@ combo_t key_combos[] = {
 
     // Keypad combos (all need actions or mods, so must be here)
     [PC_STAB] = COMBO_ACTION(PCM2_combo), // shift-<tab> on num
-    
+
     [HC_EQL] = COMBO_ACTION(Hequal_combo), // =  (hold for %)
     [PC_SENT] = COMBO_ACTION(P2E_combo), // shift-<enter> on num
     [PC_TGNM] = COMBO(PNLCK_combo, KC_NUM), // toggle num lock
@@ -416,7 +464,7 @@ combo_t key_combos[] = {
 
     [HC_NDSH] = COMBO_ACTION(Hndsh_combo), // – N-DASH
     [HC_MDSH] = COMBO_ACTION(Hmdsh_combo), // — M-DASH
-    
+
 // Dead keys (Mac only, for now)
     [HC_ACUT] = COMBO_ACTION(Hacut_combo), // ´ acute
     [HC_GRV] = COMBO_ACTION(Hgrv_combo), // ` grave
@@ -467,7 +515,7 @@ combo_t key_combos[] = {
 
     [HC_TYPE_LEFTCOMBO] = COMBO_ACTION(H_Left_combo), // a personally useful 5-8gram!
     [HC_TYPE_RIGHTCOMBO] = COMBO_ACTION(H_Right_combo), // a demonstrator, how long autotypes can be!
-    
+
     [HC_SPC] = COMBO(Hspc_combo, KC_SPC), // SPACE
     [HC_ENT] = COMBO(Hent_combo, KC_ENT), // ENTER
     [HC_ENT2] = COMBO(Hent2_combo, SK_HENT), // hard-ENTER
@@ -486,5 +534,5 @@ combo_t key_combos[] = {
     [HC_COPY] = COMBO_ACTION(Hcopy_combo), // using hold for cut
 //    [HC_PSTM] = COMBO(Hpstm_combo, SK_PSTM),  // also hold paste (no longer used?)
     [HC_PSTE] = COMBO_ACTION(Hpste_combo) // using hold for paste-match
-    
+
 };

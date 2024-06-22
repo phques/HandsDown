@@ -166,6 +166,9 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 tap_code16(KC_U); // almost always "œu"
                 combo_on = combo_index; // but like qu, we'll take it back if we must.
                 break;
+            case HC_ING: // "ing"
+                send_string("ing");
+                break;
 /*
             case HC_1E: // É
                 tap_code16(A(KC_E)); // this should use semkeys

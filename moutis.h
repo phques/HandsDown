@@ -54,7 +54,9 @@ extern rgblight_config_t rgblight_config;
 #include "handsdown/vb-config.ts.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.ts.h" // definitions for all the other layers
 #else
-#include "handsdown/vv2-config.h" // definitions for the Alpha layer and mnemonic combos
+//#define SWAPHANDS
+//#define REVERSED_QUOTES
+#include "handsdown/vb-config.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.h" // definitions for all the other layers
 #endif
 
@@ -79,7 +81,7 @@ extern rgblight_config_t rgblight_config;
 #define ADAPT_VOWEL_H // eliminate vowel SFBs (AU/UA;EO/OE) using vH instead of v'
 #define ADAPT_SHIFT KC_COMM // keycode to precede alpha for one-shot shift (leader)
 #define ADAPTIVE_TRAILER KC_HASH
-//#define FR_ADAPTIVES // eliminate 'h SFB for French
+#define FR_ADAPTIVES // eliminate 'h SFB for French
 
 //#define THUMB_REPEATER
 #ifdef THUMB_REPEATER

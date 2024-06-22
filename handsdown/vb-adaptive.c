@@ -1,19 +1,19 @@
 /*
  Adaptive Keys
  Called from early within process_record_user
- 
+
  Tailored for HD Vibranium-b (vb)
- 
+
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
     which have a shorter keydown threshhold (COMBO_TERM).
- 
+
  */
 
 
 bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
     bool return_state = true; // assume we don't do anything.
-    
+
     // Are we in an adaptive context? (adaptive on is assumed).
     if (timer_elapsed(prior_keydown) > ADAPTIVE_TERM) { // outside adaptive threshhold
         prior_keycode = preprior_keycode = prior_keydown = 0; // turn off Adaptives.
@@ -119,7 +119,11 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_M: // Eliminate MN SFB
                     tap_code(KC_N); // MJ = mn (MN is 83x more common than MJ)
                     return_state = false; // done.
-                    break; 
+                    break;
+                case KC_X: //pq, 2024-06, DJ is really bad index same finger from bottom to top middle column
+                    tap_code(KC_BSPC);
+                    tap_code(KC_D); // XJ = DJ
+                    break; // and let current keycode send normally
             }
             break;
 
@@ -293,7 +297,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 /*
 // right hand adaptives
 */
-            
+
           case KC_QUOT:
               switch (prior_keycode) {
                   case KC_DOT:
@@ -340,7 +344,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                         send_string("com");
                         return_state = false; // done.
                         break;
-      
+
                 }
                 break;
 
@@ -399,7 +403,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
-            
+
 
 #ifdef THUMB_REPEATER
         case HD_REPEATER_A: // Make a repeat key of the secondary thumb key on both sides

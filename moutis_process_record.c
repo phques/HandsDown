@@ -298,8 +298,11 @@ register_key_trap_and_return:
                     return_state = false; // stop processing this record.
                 }
                 break;
-
+#ifdef REVERSED_QUOTES
+            case KC_QUOT:  // SHIFT = [ (linger=[|]), ALT=«, ALT+SHIFT=‹
+#else
             case KC_DQUO:  // SHIFT = [ (linger=[|]), ALT=«, ALT+SHIFT=‹
+#endif
                 clear_keyboard(); // clean record to tinker with.
                 if (saved_mods & MOD_MASK_ALT) { // ALT (only) down?
                         if (saved_mods & MOD_MASK_SHIFT) { // SHFT too?
@@ -320,7 +323,11 @@ register_key_trap_and_return:
                     register_linger_key(keycode); // example of simple linger macro
                     return_state = false; // don't do more with this record.
                 break;
-            case KC_QUOT: // SHIFT = ], ALT=», ALT+SHIFT=›
+#ifdef REVERSED_QUOTES
+            case KC_DQUO:  // SHIFT = [ (linger=[|]), ALT=«, ALT+SHIFT=‹
+#else
+            case KC_QUOT:  // SHIFT = [ (linger=[|]), ALT=«, ALT+SHIFT=‹
+#endif
 
                 clear_keyboard(); // clean record to tinker with.
                 if (saved_mods & MOD_MASK_ALT) { // ALT (only) down?

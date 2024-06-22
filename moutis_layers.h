@@ -245,7 +245,7 @@ __ │ UNDO     CUT     COPY    PSTE      SPC   │ __ __   __ __ │  PCMM     
 
 /*   L_NAV THE NAVIGATION (right hand) LAYER w/ edit & mods on left
    ╭──────────────────────────────────────────╮                  ╭───────────────────────────────────────────────╮
-__ │   QUIT     CLOZ    SCAP    SCLP    PSTM  │                  │  DOCBEG     HOME    UP      PGUP    PARAPRV   │ KC_NUM
+__ │   TAB      CLOZ    SCAP    SCLP    PSTM  │                  │  DOCBEG     HOME    UP      PGUP    PARAPRV   │ KC_NUM
 __ │   LCTL     LALT    LGUI    LSFT    FIND  |                  |  WORDPRV    LEFT    DOWN    RGHT    WORDNXT   │ __
 __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND     END     DOWN    PGDN    PARANXT   │ __
    ╰──────────────────╮  __     __     __     │ __           __  │  HISTPRV  HISTNXT    __    ╭──────────────────╯
