@@ -41,9 +41,9 @@ __ │    <       >       &        /        |     │ __  __   __  __  │     �
 */
 /*  L_SYM Symbols and punctuation (Some via SemKeys/unicode for platform independance)
    ╭────────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
-__ │    Z       Q       ¶        §        ‡     │                  │     ¢        $       €       £       ¥   │ __
-__ │    •       [       (        {        †     |                  |     /        =       *       +       -   │ __
-__ │    ·       ]       )        }        °     │ __  __   __  __  │     ^        |       &       <       >   │ __
+__ │    Z       Q       `(¶)    ~(§)      ‡     │                  │     ¢        $       \(€)    £       ¥   │ __
+__ │    :(•)    [       (        {        †     |                  |     /        =       *       +       -   │ __
+__ │    !(·)    ]       )        }        °     │ __  __   __  __  │     ^        |       &       <       >   │ __
    ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ª     ╭─────────────╯
    KC_PGDN   KC_PGUP  ╰─────────────────────────╯                  ╰────────────────────────────╯ SK_WORDPRV  SK_WORDNXT
 */
@@ -51,31 +51,37 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
 #define LS_LT5 KC_TRNS
 #define LS_LT4 KC_Z
 #define LS_LT3 KC_Q
-#define LS_LT2 SK_PARA // ¶
-#define LS_LT1 SK_SECT // §
+#define LS_LT2 KC_GRAVE//pq SK_PARA // ¶
+#define LS_LT1 KC_TILD //pq SK_SECT // §
 #define LS_LT0 SK_DCRS // ‡
 #define LS_RT0 SK_CENT // ¢
 #define LS_RT1 KC_DLR  // $
-#define LS_RT2 SK_EURO // €
+#define LS_RT2 KC_BSLS //PQ SK_EURO // €
 #define LS_RT3 SK_BPND // £
 #define LS_RT4 SK_JPY  // ¥
 #define LS_RT5 KC_TRNS
 
 #define LS_LM5 KC_TRNS
-#define LS_LM4 LALT(KC_8) // SK_BLLT? // KC_LT
+//pq
+#define LS_LM4 KC_COLN
+//#define LS_LM4 LALT(KC_8) // SK_BLLT? // KC_LT
 #define LS_LM3 KC_LBRC
 #define LS_LM2 KC_LPRN
 #define LS_LM1 KC_LCBR
 #define LS_LM0 SK_SCRS
-#define LS_RM0 KC_PSLS // / // SK_IEXC
-#define LS_RM1 RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
+#define LS_RM0 KC_SLSH // pq KC_PSLS // / // SK_IEXC
+#define LS_RM1 RSFT_T(KC_EQL)   // pq RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
+//#define LS_RM2 RGUI_T(KC_ASTR)  // pq RGUI_T(KC_PAST) // RGUI_T(KC_PEQL)
 #define LS_RM2 RGUI_T(KC_PAST) // RGUI_T(KC_PEQL)
+//#define LS_RM3 RALT_T(KC_PLUS)  // pq RALT_T(KC_PPLS)
 #define LS_RM3 RALT_T(KC_PPLS)
-#define LS_RM4 RCTL_T(KC_PMNS) // RCTL_T(KC_PSLS)
+#define LS_RM4 RCTL_T(KC_MINS)  // pq RCTL_T(KC_PMNS) // RCTL_T(KC_PSLS)
 #define LS_RM5 KC_TRNS
 
 #define LS_LB5 KC_TRNS
-#define LS_LB4 LSA(KC_9) // · // KC_GT
+//pq
+#define LS_LB4 KC_EXLM // SK_BLLT? // KC_LT
+// #define LS_LB4 LSA(KC_9) // · // KC_GT
 #define LS_LB3 KC_RBRC
 #define LS_LB2 KC_RPRN
 #define LS_LB1 KC_RCBR
@@ -111,7 +117,7 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
          ╭──────────────────────────────────────────╮               ╭──────────────────────────────────────────╮
  RGB_TOG │ F9       F10     F11     F12     F13     │               │ /       7       8       9       -        │ RGB_MOD
  RGB_VAI │ C_T(F5)  A_T(F6) G_T(F7) S_T(L8) F14     |               | *       S_T(1)  G_T(2)  A_T(3)  C_T(+)   │ RGB_HUI
- RGB_VAD │ F1       F2      F3      F4      INS     │ __ __   __ __ │ ,       4       5       3       =        │ RGB_HUD
+ RGB_VAD │ F1       F2      F3      F4      INS     │ __ __   __ __ │ ,       4       5       6       =        │ RGB_HUD
          ╰────────────────╮ __      __      __      │ __         __ │ 0       .       TG(LN)  ╭────────────────╯
               __      __  ╰─────────────────────────╯               ╰─────────────────────────╯ __       __
 */
@@ -139,6 +145,7 @@ __ │    ·       ]       )        }        °     │ __  __   __  __  │    
 #define LF_RM1 RSFT_T(KC_1)
 #define LF_RM2 RGUI_T(KC_2)
 #define LF_RM3 RALT_T(KC_3)
+//#define LF_RM4 RCTL_T(KC_PLUS)  // pq RCTL_T(KC_PPLS)
 #define LF_RM4 RCTL_T(KC_PPLS)
 #define LF_RM5 RGB_HUI
 
@@ -220,7 +227,7 @@ __ │ UNDO     CUT     COPY    PSTE      SPC   │ __ __   __ __ │  PCMM     
 #define LN_LBB KC_TRNS
 #define LN_RBB KC_TRNS
 #define LN_RBA KC_ESC
-#define LN_RB0 KC_PCMM
+#define LN_RB0 KC_COMM // pq KC_PCMM, does not work on my Mac!?
 #define LN_RB1 KC_P1
 #define LN_RB2 KC_P2
 #define LN_RB3 KC_P3
@@ -248,7 +255,7 @@ __ │ UNDO     CUT     COPY    PSTE      SPC   │ __ __   __ __ │  PCMM     
 __ │   TAB      CLOZ    SCAP    SCLP    PSTM  │                  │  DOCBEG     HOME    UP      PGUP    PARAPRV   │ KC_NUM
 __ │   LCTL     LALT    LGUI    LSFT    FIND  |                  |  WORDPRV    LEFT    DOWN    RGHT    WORDNXT   │ __
 __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND     END     DOWN    PGDN    PARANXT   │ __
-   ╰──────────────────╮  __     __     __     │ __           __  │  HISTPRV  HISTNXT    __    ╭──────────────────╯
+   ╰──────────────────╮  __     DEL    BS     │ __           __  │  HISTPRV  HISTNXT    __    ╭──────────────────╯
       ZOOMRST ZOOMOUT ╰───────────────────────╯                  ╰────────────────────────────╯ HISTPRV HISTNXT
 */
 
@@ -299,7 +306,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LV_LH4 SK_ZOOMIN // also left encoder CW
 #define LV_LH3 KC_TRNS  // typically the app menu
 #define LV_LH2 KC_BSPC
-#define LV_LH1 KC_ENTER
+#define LV_LH1 KC_DEL   //pq KC_ENTER
 #define LV_LH0 SK_QUIT  // also left encoder key switch
 #define LV_LHA G(KC_TAB)
 #define LV_RHA TG(L_NAV)
@@ -314,8 +321,8 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 /*   L_CFG Keyboard Configuration (left) and Media Settings (right)
          ╭──────────────────────────────────────────╮                            ╭───────────────────────────────────────────────╮
       __ │  SK_Lux  SK_Win  SK_Mac  QK_RBT  SK_KILL │                            │ (C(A(del)))KC_NUM  KC_EJCT KC_NO   SK_ZOOMRST │ RGB_MOD
- RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU KC_BRIU |                            | SH_ON     KC_MPRV  KC_MUTE KC_MNXT SK_ZOOMOUT │ RGB_SAI
- RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD KC_BRID │ RGB_VAD  __    __  RGB_SAD │ SH_OFF    KC_MRWD  KC_MPLY KC_MFFD SK_ZOOMIN  │ RGB_HUD
+ RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU KC_BRIU |                            | HD_TGFR   KC_MPRV  KC_MUTE KC_MNXT SK_ZOOMOUT │ RGB_SAI
+ RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD KC_BRID │ RGB_VAD  __    __  RGB_SAD │ SH_TOGG   KC_MRWD  KC_MPLY KC_MFFD SK_ZOOMIN  │ RGB_HUD
          ╰──────────────────╮   __     __   EE_CLR  │ __                     __  │   __       __       __     ╭──────────────────╯
                     __   __ ╰───────────────────────╯                            ╰────────────────────────────╯   __     __
 */
@@ -339,7 +346,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_LM2 HD_L_ALPHA
 #define LC_LM1 KC_VOLU
 #define LC_LM0 KC_BRIU
-#define LC_RM0 SH_ON    //##pq swap hands ON KC_NO
+#define LC_RM0 HD_TGFR    //##pq French Adaptives Toggle on/off KC_NO
 #define LC_RM1 KC_MPRV
 #define LC_RM2 KC_MUTE
 #define LC_RM3 KC_MNXT
@@ -356,7 +363,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_LBB SK_ZOOMIN
 #define LC_RBB SK_ZOOMOUT
 #define LC_RBA RGB_SAD
-#define LC_RB0 SH_OFF   //##pq swap hands OFF KC_NO
+#define LC_RB0 SH_TOGG   //##pq toggle swap hands KC_NO
 #define LC_RB1 KC_MRWD
 #define LC_RB2 KC_MPLY
 #define LC_RB3 KC_MFFD

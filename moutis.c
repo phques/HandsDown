@@ -1,6 +1,7 @@
 
 //#include QMK_KEYBOARD_H
 
+#include <stdbool.h>
 #include <stdio.h>
 
 #include "moutis.h"
@@ -17,6 +18,7 @@ uint16_t key_trap = 0; // the actual keycode registered (need to unregister)
 uint16_t preprior_keycode = KC_NO;
 uint16_t prior_keycode = KC_NO;
 uint16_t prior_keydown = 0; // timer of keydown for adaptive threshhold.
+bool french_adaptives_on = false; //pq
 #endif
 
 uint16_t linger_key = 0;  // keycode for linger actions (ex. "Qu")
@@ -44,8 +46,8 @@ layer_state_t layer_state_set_user(layer_state_t layer_state) {
  Someday, when OLED is important again, rewrite to
  display Host Keyboard Layer Status using a table of layer names
 */
-    
-    
+
+
 #ifdef OLED_DRIVER_ENABLE
     oled_set_cursor(0, 0);
     oled_write_P (layer_name[get_highest_layer(layer_state)]);

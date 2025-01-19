@@ -3,6 +3,8 @@
 // The Hands Down Variation dependent defs & files
 //
 #define HD_adaptive_code "handsdown/vb-adaptive.c"
+#define SWAPHANDS
+
 //
 // pq mirrored left/right.. of course this is all messed up, would need more adjustments outside of this file to work
 // BUT..there IS something about it.. that suggests it might be good (for me/my hands)
@@ -136,6 +138,15 @@
 #define HD_LH4 KC_LEFT
 #define HD_LH5 KC_RGHT
 
+// redefine these since they're in reverse order
+#ifdef DQUO_S
+#undef DQUO_S
+#undef SQUO_S
+#endif
+#define DQUO_S  KC_LBRC // [ (via Double quote shifted)
+#define SQUO_S  KC_RBRC // ] (via Single quote shifted)
+
+
 #ifdef COMBO_ENABLE
 //
 // We want to be able to define a combo by location
@@ -197,6 +208,8 @@
 //#define HD_R2 HD_X
 //#define HD_R3_keys HD_RM3, HD_RM1 // ex. TYPE "j"
 //#define HD_R3 HD_J
+
+#define HD_ing_keys HD_RM3, HD_LM2 // TYPE "ing"
 
 //
 // H digraph combos

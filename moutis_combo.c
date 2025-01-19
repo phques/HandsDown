@@ -167,7 +167,8 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
                 combo_on = combo_index; // but like qu, we'll take it back if we must.
                 break;
             case HC_ING: // "ing"
-                send_string("ing");
+                tap_code(KC_I); // send "I" honoring caps
+                send_string("ng");
                 break;
 /*
             case HC_1E: // É

@@ -434,6 +434,14 @@ storeSettings:
                 toggle_caps_word();
                 return_state = false; // don't do more with this record.
                 break;
+
+            case HD_TGFR:
+#if defined (ADAPTIVE_ENABLE) && defined (FR_ADAPTIVES)
+                french_adaptives_on = !french_adaptives_on;   //pq French Adaptives Toggle on/off
+#endif
+                return_state = false; // don't do more with this record.
+                break;
+
 #endif // KEY_OVERRIDE_ENABLE
 
 

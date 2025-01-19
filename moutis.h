@@ -54,9 +54,7 @@ extern rgblight_config_t rgblight_config;
 #include "handsdown/vb-config.ts.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.ts.h" // definitions for all the other layers
 #else
-//#define SWAPHANDS
-//#define REVERSED_QUOTES
-#include "handsdown/vb-config.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/au-config.h" // definitions for the Alpha layer and mnemonic combos
 #include "moutis_layers.h" // definitions for all the other layers
 #endif
 
@@ -108,8 +106,10 @@ extern rgblight_config_t rgblight_config;
 // Perhaps simply redefining these in the xx-config.h
 // to override these defs would be the right approach?
 //
+#ifndef DQUO_S
 #define DQUO_S  KC_RBRC // ] (via Double quote shifted)
 #define SQUO_S  KC_LBRC // [ (via Single quote shifted)
+#endif
 #define JRQU KC_RBRC //  「 (via " in Japanese mode)
 #define JLQU KC_LBRC //  」 (via ' in Japanese mode)
 

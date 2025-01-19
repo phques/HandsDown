@@ -38,11 +38,8 @@
 #define HD_MINS KC_MINS
 #define HD_HASH KC_HASH
 #define HD_SPC  LT(L_SYM,KC_SPC)
-//#define HD_BSPC LT(L_FUN,KC_BSPC)
-//#define HD_ENT  LT(L_NAV,KC_ENT)
-// pq swap BS/CR but keep layers on same fingers
-#define HD_BSPC LT(L_NAV,KC_BSPC)
-#define HD_ENT  LT(L_FUN,KC_ENT)
+#define HD_BSPC LT(L_FUN,KC_BSPC)
+#define HD_ENT  LT(L_NAV,KC_ENT)
 #define HD_QUOT KC_QUOT
 #define HD_DQUO KC_DQUO // KC_DQUO or SK_SDQU
 #define HD_SLSH KC_SLSH
@@ -125,18 +122,14 @@
 #define HD_LH5 KC_DOWN
 #define HD_LH4 KC_UP
 #define HD_LH3 KC_APP
-// pq swap BS/CR
-//#define HD_LH2 HD_BSPC
-#define HD_LH2 HD_ENT
+#define HD_LH2 HD_BSPC
 #define HD_LH1 HD_R
 #define HD_LH0 LT(L_CFG,KC_MUTE)
 #define HD_LHA SK_FIND // find
 #define HD_RHA SK_FAGN // find again
 #define HD_RH0 LT(L_CFG,KC_MPLY)
 #define HD_RH1 HD_SPC
-// pq swap BS/CR
-//#define HD_RH2 HD_ENT
-#define HD_RH2 HD_BSPC
+#define HD_RH2 HD_ENT
 #define HD_RH3 TG(L_NUM)
 #define HD_RH4 KC_LEFT
 #define HD_RH5 KC_RGHT

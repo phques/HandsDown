@@ -290,6 +290,10 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_L);
                     return_state = false; // done.
                     break;
+                case KC_W: // wx = wl
+                    tap_code(KC_L);
+                    return_state = false; // done.
+                    break;
             }
             break;
 
@@ -380,6 +384,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 */
                 case KC_Y: // (y'all)
                     return_state = false; // done.
+                    tap_code(KC_QUOT); // YH => Y' (pull down to avoid ring-pinky T-B scissor)
+                    break;
 #ifdef FR_ADAPTIVES // eliminate 'h SFB for French
                 case KC_J: // j'habite
                 case KC_L: // l'hôtel
@@ -389,7 +395,10 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_T: // t'habitude can't do this (bc Th) unless Th digraph combo is used…
 #endif
 #endif
-                    tap_code(KC_QUOT); // YH => Y' (pull down to avoid ring-pinky T-B scissor)
+                    //pq
+                    if (french_adaptives_on){
+                        tap_code(KC_QUOT); // YH => Y' (pull down to avoid ring-pinky T-B scissor)
+                    }
                     break;
 
             }

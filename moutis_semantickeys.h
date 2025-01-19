@@ -36,6 +36,7 @@ enum my_keycodes {
     HD_RGB_hue_dn, // Hue +
 #endif
     HD_CAPSWORD,
+    HD_TGFR,    //pq French Adaptives Toggle on/off
     SK_Mac,
     SK_Win,
     SK_Lux,
