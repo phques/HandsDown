@@ -3,7 +3,7 @@
 // The Hands Down Variation dependent defs & files
 //
 #define HD_adaptive_code "handsdown/vb-adaptive.c"
-#define SWAPHANDS
+
 
 //
 // pq mirrored left/right.. of course this is all messed up, would need more adjustments outside of this file to work
