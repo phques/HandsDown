@@ -57,12 +57,12 @@ extern rgblight_config_t rgblight_config;
 // mi = mithril (R on thumb)
 // pm = promethium (R on thumb)
 // rh = rhodium (R on thumb)
-// vb = vibranium (R on thumb, b in lower left, f on right)
-// vf = vibranium (R on thumb f in lower left, b on right)
-// vv = vibranium (R on thumb v in lower left, f on right)
-// vx = vibranium (R on thumb x in lower left, f on right)
+// vf = vibranium (R on thumb, f in lower left, b on right) - "canonical"
+// vv = vibranium (R on thumb, v in lower left, f on right) - lowest SFB
+// vx = vibranium (R on thumb, x in lower left, f on right) - same
+// vb = vibranium (R on thumb, b in lower left, f on right) - more rolling w/adaptives
 //
-#define HD vb
+#define HD vf
 //
 // HD_CONFIG defines all variation dependent constants/files/keycodes, etc.
 // that will be used in the respective keymap for each keyboard
