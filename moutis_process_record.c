@@ -4,6 +4,18 @@
 
  */
 
+// pq Detect when QMK's CAPS_WORD is active
+static bool  qmkCapsWord = false;
+
+// pq this is called by QMK to let us when CAPS_WORD is activated or deactivated
+void caps_word_set_user(bool active) {
+    if (active) {
+        qmkCapsWord = true;
+    } else {
+        qmkCapsWord = false;
+    }
+}
+
 #include "moutis_casemods.h"
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
@@ -12,6 +24,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 
     saved_mods = get_mods(); // preserve mods
+
+    // pq QMK's CAPS_WORD is active, so let it handle it / don't interfere.
+    // note that combos that send text will still not work properly
+    if (qmkCapsWord) {
+        return true;
+    }
 
     // Do we need to filter multi-function keys?
     switch (keycode) {
@@ -209,7 +227,7 @@ goto_register_key_trap_and_return: // ##Warning
             case KC_COMM:  // SHIFT = ;, ALT=_; linger = ", "
                 unregister_mods(MOD_MASK_SA); // get rid of shift & alt
                 if (saved_mods & MOD_MASK_ALT) { // ALT down?
-                    if (saved_mods & MOD_MASK_SHIFT) { // SFT too?
+                    if (saved_mods & MOD_MASK_SHIFT) { // SFT too?m
                         tap_code16(A(KC_BSLS)); // "⁄" (convert to SemKey)
                     } else {
                         tap_code16(KC_UNDS);

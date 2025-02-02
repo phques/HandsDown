@@ -446,7 +446,9 @@ combo_t key_combos[] = {
     [FC_SCLP] = COMBO(F_SCLP_combo, SK_SCLP), // SCREEN CAPTURE SELECTION to clipboard
     [FC_SRCH] = COMBO(F_SRCH_combo, SK_SRCH), // platform search (siri/cortana, etc.)
     [FC_CAPS] = COMBO(F_CAPS_combo, KC_CAPS), // CAPS LOCK
-    [HC_CAPW] = COMBO_ACTION(H_CAPW_combo),   // CAPS_WORD
+// pq qmk CAPS_WORD
+    [HC_CAPWQMK] = COMBO_ACTION(H_CAPW_combo),   // CAPS_WORD
+    // [HC_CAPW] = COMBO_ACTION(H_CAPW_combo),   // CAPS_WORD
 
     [FC_LANG2] = COMBO(H_EISUU_combo, SK_MHEN), // eisuu (others)
     [FC_LANG1] = COMBO(H_KANA_combo, SK_HENK), // kana (others)

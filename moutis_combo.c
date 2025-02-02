@@ -56,6 +56,10 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
 
 
 //            case HC_CAPG: // turn on capsword for Gold
+            case HC_CAPWQMK: //pq toggle QMK capsword (use HC_CAPW for moutis capsword)
+                caps_word_toggle();
+                break;
+
             case HC_CAPW: // turn on capsword (automatically turns off on delimiter)
                 toggle_caps_word();
                 break;

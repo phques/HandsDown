@@ -120,9 +120,14 @@ bool my_process_caps_word(uint16_t keycode, const keyrecord_t *record) {
                     return false; // We handled it
                 }
             case KC_A ... KC_Z: // only works for ASCII. fix this.
-                register_code(KC_LSFT); // for platforms that do CAPSLK differently
+                // pq fix for Windows
+                if (user_config.OSIndex != OS_Win) {
+                    register_code(KC_LSFT); // for platforms that do CAPSLK differently
+                }
                 tap_code(keycode); // like iOS, etc.
-                unregister_code(KC_LSFT);
+                if (user_config.OSIndex != OS_Win) {
+                    unregister_code(KC_LSFT);
+                }
                 last_press_was_space = false;
                return false; // We handled it
             }

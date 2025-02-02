@@ -24,42 +24,41 @@
 // RH5, RH4 are also Right encoder CCW, CW
 
 /*  L_SYM Symbols and punctuation (Some via SemKeys/unicode for platform independance)
+    Pq added ralt(,.) to be used w. Canandian Multilingual layout for <> (altGr)
    ╭────────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
-__ │    Z       Q       `(¶)    ~(§)      ‡     │                  │     ¢        $       \(€)    £       ¥   │ __
-__ │    :(•)    [       (        {        †     |                  |     /        =       *       +       -   │ __
-__ │    !(·)    ]       )        }        °     │ __  __   __  __  │     ^        |       &       <       >   │ __
+__ │    Z       Q       `(¶)    ~(§)     •(‡)   │                  │     ¢        $       \(€)    £       ¥   │ __
+__ │    :(•)    [       (        {    ralt-,(†) |                  |     /        =       *       +       -   │ __
+__ │    !(·)    ]       )        }    ralt-.(°) │ __  __   __  __  │     ^        |       &       <       >   │ __
    ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ª     ╭─────────────╯
    KC_PGDN   KC_PGUP  ╰─────────────────────────╯                  ╰────────────────────────────╯ SK_WORDPRV  SK_WORDNXT
 */
 
 #define LS_LT5 KC_TRNS
-#define LS_LT4 KC_Z
-#define LS_LT3 KC_Q
-#define LS_LT2 KC_GRAVE//pq SK_PARA // ¶
-#define LS_LT1 KC_TILD //pq SCRS // †
-#define LS_LT0 SK_DCRS // ‡
-#define LS_RT0 SK_CENT // ¢
-#define LS_RT1 KC_DLR  // $
-#define LS_RT2 KC_BSLS //PQ SK_EURO // €
-#define LS_RT3 SK_BPND // £
-#define LS_RT4 SK_JPY  // ¥
+#define LS_LT4 LCTL_T(KC_Z)
+#define LS_LT3 LALT_T(KC_Q)
+#define LS_LT2 LGUI_T(KC_GRAVE) //PQ SK_PARA // ¶
+#define LS_LT1 LSFT_T(KC_TILD)  //PQ SCRS // †
+#define LS_LT0 SK_SECT  //PQ SK_DCRS  // ‡
+#define LS_RT0 SK_CENT  // ¢
+#define LS_RT1 KC_DLR   // $
+#define LS_RT2 KC_BSLS  //PQ SK_EURO // €
+#define LS_RT3 SK_BPND  // £
+#define LS_RT4 SK_JPY   // ¥
 #define LS_RT5 KC_TRNS
 
 #define LS_LM5 KC_TRNS
-//pq
-#define LS_LM4 KC_COLN
-//#define LS_LM4 SK_SECT // §
+#define LS_LM4 KC_COLN  //PQ SK_SECT // §
 #define LS_LM3 KC_LBRC
 #define LS_LM2 KC_LPRN
 #define LS_LM1 KC_LCBR
-#define LS_LM0 LALT(KC_8) // SK_BLLT?
-#define LS_RM0 KC_SLSH // pq KC_PSLS // / // SK_IEXC
-#define LS_RM1 RSFT_T(KC_EQL)   // pq RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
-//#define LS_RM2 RGUI_T(KC_ASTR)  // pq RGUI_T(KC_PAST) // RGUI_T(KC_PEQL)
-#define LS_RM2 RGUI_T(KC_PAST) // RGUI_T(KC_PEQL)
-//#define LS_RM3 RALT_T(KC_PLUS)  // pq RALT_T(KC_PPLS)
+#define LS_LM0 RALT(KC_COMMA) //PQ LALT(KC_8)   // SK_BLLT?
+#define LS_RM0 KC_SLSH  //PQ KC_PSLS // / // SK_IEXC
+#define LS_RM1 RSFT_T(KC_EQL)       //PQ RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
+//#define LS_RM2 RGUI_T(KC_ASTR)    //PQ RGUI_T(KC_PAST) // RGUI_T(KC_PEQL)
+#define LS_RM2 RGUI_T(KC_PAST)      // RGUI_T(KC_PEQL)
+//#define LS_RM3 RALT_T(KC_PLUS)    //PQ RALT_T(KC_PPLS)
 #define LS_RM3 RALT_T(KC_PPLS)
-#define LS_RM4 RCTL_T(KC_MINS)  // pq RCTL_T(KC_PMNS) // RCTL_T(KC_PSLS)
+#define LS_RM4 RCTL_T(KC_MINS)      //PQ RCTL_T(KC_PMNS) // RCTL_T(KC_PSLS)
 #define LS_RM5 KC_TRNS
 
 #define LS_LB5 KC_TRNS
@@ -69,7 +68,7 @@ __ │    !(·)    ]       )        }        °     │ __  __   __  __  │    
 #define LS_LB3 KC_RBRC
 #define LS_LB2 KC_RPRN
 #define LS_LB1 KC_RCBR
-#define LS_LB0 LSA(KC_8)  // ° // LALT(KC_8) // SK_BLLT?
+#define LS_LB0 RALT(KC_DOT)   //PQ LSA(KC_8)  // ° // LALT(KC_8) // SK_BLLT?
 #define LS_LBA KC_TRNS
 #define LS_LBB KC_TRNS
 #define LS_RBB KC_TRNS
@@ -129,7 +128,7 @@ __ │    !(·)    ]       )        }        °     │ __  __   __  __  │    
 #define LF_RM1 RSFT_T(KC_1)
 #define LF_RM2 RGUI_T(KC_2)
 #define LF_RM3 RALT_T(KC_3)
-//#define LF_RM4 RCTL_T(KC_PLUS)  // pq RCTL_T(KC_PPLS)
+//#define LF_RM4 RCTL_T(KC_PLUS)  //PQ RCTL_T(KC_PPLS)
 #define LF_RM4 RCTL_T(KC_PPLS)
 #define LF_RM5 RGB_HUI
 
@@ -212,7 +211,7 @@ __ │    !(·)    ]       )        }        °     │ __  __   __  __  │    
 #define LN_LBB KC_TRNS
 #define LN_RBB KC_TRNS
 #define LN_RBA KC_ESC
-#define LN_RB0 KC_COMM // pq KC_PCMM, does not work on my Mac!?
+#define LN_RB0 KC_COMM //PQ KC_PCMM, does not work on my Mac!?
 #define LN_RB1 KC_P1
 #define LN_RB2 KC_P2
 #define LN_RB3 KC_P3

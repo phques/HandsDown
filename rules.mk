@@ -14,6 +14,7 @@ TAP_DANCE_ENABLE = no
 
 AUTO_SHIFT_ENABLE = no  # requires 1936 bytes!
 
+CAPS_WORD_ENABLE = yes  # pq make both QMK and moutis available
 EXTRAKEY_ENABLE = yes   # Audio control and System control
 COMBO_ENABLE = yes      # chording
 LTO_ENABLE = yes		# optimize at link time

@@ -42,6 +42,7 @@ enum my_combos {
     HC_CFG,  // The keyboard and media config/settings layer
     HC_APP,
     HC_APPNAV, // App menu on Nav layer
+    HC_CAPWQMK, //PQ the WMK CAPS WORD
     HC_CAPW, // CAPS WORD for all others
     FC_CAPS, // CAPS LOCK (others)
     FC_LANG2, // eisuu/mhen (others)

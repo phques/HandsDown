@@ -235,6 +235,55 @@ case HD_MAGIC:  // default is KC_HASH "#"
             send_string(Z_MAGIC);  //
             break;
     #endif
+    #ifdef _1_MAGIC
+        case KC_1: //
+            tap_code(KC_BSPC); // and may have been lowercase
+            send_string(_1_MAGIC);  //
+            break;
+    #endif
+    #ifdef _2_MAGIC
+        case KC_2: //
+            tap_code(KC_BSPC); // and may have been lowercase
+            send_string(_2_MAGIC);  //
+            break;
+    #endif
+    #ifdef _3_MAGIC
+        case KC_3: //
+            tap_code(KC_BSPC); // and may have been lowercase
+            send_string(_3_MAGIC);  //
+            break;
+    #endif
+    #ifdef _4_MAGIC
+        case KC_4: //
+            tap_code(KC_BSPC); // and may have been lowercase
+            send_string(_4_MAGIC);  //
+            break;
+    #endif
+    #ifdef _5_MAGIC
+        case KC_5: //
+            tap_code(KC_BSPC); // and may have been lowercase
+            send_string(_5_MAGIC);  //
+            break;
+    #endif
+    #ifdef _6_MAGIC
+        case KC_6: //
+            tap_code(KC_BSPC); // and may have been lowercase
+            send_string(_6_MAGIC);  //
+            break;
+    #endif
+    #ifdef _7_MAGIC
+        case KC_7: //
+            tap_code(KC_BSPC); // and may have been lowercase
+            send_string(_7_MAGIC);  //
+            break;
+    #endif
+    #ifdef _8_MAGIC
+        case KC_8: //
+            tap_code(KC_BSPC); // and may have been lowercase
+            send_string(_8_MAGIC);  //
+            break;
+    #endif
+
         default: //
             return_state = true; // didn't end up doing anything.
     }
