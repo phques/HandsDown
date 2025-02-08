@@ -62,14 +62,17 @@ extern rgblight_config_t rgblight_config;
 // vx = vibranium (R on thumb, x in lower left, f on right) - same
 // vb = vibranium (R on thumb, b in lower left, f on right) - more rolling w/adaptives
 //
-#define HD vf
+#define HD pm
+
+// #define REVERSED_QUOTES // swap ' " on the HD layer (mirror left/right)
+
 //
 // HD_CONFIG defines all variation dependent constants/files/keycodes, etc.
 // that will be used in the respective keymap for each keyboard
 //
 //#define HD_CONFIG
 //
-#include "handsdown/pm-config.h" // definitions for the Alpha layer and mnemonic combos
+#include "handsdown/pm-config-pqa.h" // definitions for the Alpha layer and mnemonic combos
 //
 // definitions for all the other layers not dependent on the alpha layout.
 #include "moutis_layers.h"
@@ -84,7 +87,7 @@ extern rgblight_config_t rgblight_config;
 #define ADAPT_SHIFT KC_COMM // keycode to precede alpha for one-shot shift (leader)
 #define ADAPT_H // eliminate SFBs AU/UA;EO/OE;LN;MN;NN using H (instead of ')
 #define ADAPT_AE_AU // Use AE->AU (instead of AH->AU, AH is somewhat common)
-//#define FR_ADAPTIVES // eliminate 'h SFB for French
+#define FR_ADAPTIVES // eliminate SFBs for French (')
 //#define DE_ADAPTIVES // alternate AU SFB treatment for German (same as ADAPT_AE_AU)
 #define HD_MAGIC HD_HASH // generic MAGIC_KEY (I use for text macros)
 //#define HD_MAGIC_A KC_ENT // MAGIC_KEY dependent on alpha (vowel hand?)

@@ -67,9 +67,9 @@
 //      that make Promethium what it is depend on the same-row neighbors
 //  ※ arguably, the inner column is less sensitive to this.
 //            ╭─────────────────────╮                 ╭─────────────────────╮
-// LANG1/mhen │  V   W   G   M   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
+// LANG1/mhen │  F   P   D   L   X  │ L_CFG     L_NUM │  -+   U   O   Y   B │ LANG2/henk
 //    esc     │  S   N   T   H   K  | (             ) |  ,;   A   E   I   C │ Z
-//    tab     │  F   P   D   L   X  │ [ copy   pste ] │  -+   U   O   Y   B │ Q(u)
+//    tab     │  V   W   G   M   J  │ [ copy   pste ] │  #$  .:  /*  "[  '] │ Q(u)
 //            ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
 //          left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
@@ -78,18 +78,18 @@
 //
 
 #define HD_LT5 TG(L_NAV) //pq KC_LNG1
-#define HD_LT4 HD_V
-#define HD_LT3 HD_W
-#define HD_LT2 HD_G
-#define HD_LT1 HD_M
-#define HD_LT0 HD_J
+#define HD_LB4 HD_V
+#define HD_LB3 HD_W
+#define HD_LB2 HD_G
+#define HD_LB1 HD_M
+#define HD_LB0 HD_J
 #define HD_LTA LT(L_CFG, KC_MUTE)
 #define HD_RTA LT(L_CFG, KC_MPLY)
-#define HD_RT0 HD_HASH
-#define HD_RT1 HD_DOT
-#define HD_RT2 HD_SLSH
-#define HD_RT3 HD_DQUO
-#define HD_RT4 HD_QUOT
+#define HD_RB0 HD_HASH
+#define HD_RB1 HD_DOT
+#define HD_RB2 HD_SLSH
+#define HD_RB3 HD_DQUO
+#define HD_RB4 HD_QUOT
 #define HD_RT5 KC_Z //pq KC_LNG2
 
 #define HD_LM5 KC_ESC
@@ -108,20 +108,20 @@
 #define HD_RM5 TT(L_FUN)  //pq KC_Z
 
 #define HD_LB5 KC_TAB
-#define HD_LB4 HD_F
-#define HD_LB3 HD_P
-#define HD_LB2 HD_D
-#define HD_LB1 HD_L
-#define HD_LB0 HD_X
+#define HD_LT4 HD_F
+#define HD_LT3 HD_P
+#define HD_LT2 HD_D
+#define HD_LT1 HD_L
+#define HD_LT0 HD_X
 #define HD_LBA SK_DKT8 // Dictate (speech to text)
 #define HD_LBB SK_FIND // find
 #define HD_RBB SK_FAGN // find again
 #define HD_RBA SK_AIVC // AI voice control (Siri/Cortana)
-#define HD_RB0 HD_MINS
-#define HD_RB1 HD_U
-#define HD_RB2 HD_O
-#define HD_RB3 HD_Y
-#define HD_RB4 HD_B
+#define HD_RT0 HD_MINS
+#define HD_RT1 HD_U
+#define HD_RT2 HD_O
+#define HD_RT3 HD_Y
+#define HD_RT4 HD_B
 #define HD_RB5 HD_Q // (linger adds lowercase u)
 
 //Primary Thumbs 1-3 (others are unique to the board)

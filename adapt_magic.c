@@ -49,6 +49,12 @@ case KC_DQUO:
             tap_code(KC_BSPC);
             tap_code16(KC_QUES);
             return_state = false; // done.
+//pq
+#ifdef FR_ADAPTIVES // eliminate SFBs for French
+        case KC_C: // C" => C'  c"est => c'est
+            tap_code(KC_QUOT);
+            return_state = false; // done.
+#endif
     }
     break;
 case KC_QUOT:

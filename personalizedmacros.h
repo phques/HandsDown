@@ -25,6 +25,7 @@
 #define M_MAGIC "Martin"
 #define S_MAGIC "select * from "
 #define T_MAGIC "Jitendra"
+#define V_MAGIC "vice"  // de)vice  ser)vice
 #define Y_MAGIC "Jocelyn"
 
 #define _1_MAGIC "Belanger"

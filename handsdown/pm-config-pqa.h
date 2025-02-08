@@ -2,7 +2,7 @@
 //
 // The Hands Down Variation dependent defs & files
 //
-#define HD_adaptive_code "handsdown/pm-adaptive.c"
+#define HD_adaptive_code "handsdown/pm-adaptive-pqa.c"
 //
 
 //
@@ -67,9 +67,9 @@
 //      that make Promethium what it is depend on the same-row neighbors
 //  ※ arguably, the inner column is less sensitive to this.
 //            ╭─────────────────────╮                 ╭─────────────────────╮
-// LANG1/mhen │  V   W   G   M   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
-//    esc     │  S   N   T   H   K  | (             ) |  ,;   A   E   I   C │ Z
-//    tab     │  F   P   D   L   X  │ [ copy   pste ] │  -+   U   O   Y   B │ Q(u)
+// LANG1/mhen │  Z   W   G   M   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
+//     V      │  S   N   T   H   K  | (             ) |  ,;   A   E   I   C │ Q(u)
+//    tab     │  F   P   D   L   X  │ [ copy   pste ] │  -+   U   O   Y   B │ Esc
 //            ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
 //          left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
@@ -78,7 +78,7 @@
 //
 
 #define HD_LT5 TG(L_NAV) //pq KC_LNG1
-#define HD_LT4 HD_V
+#define HD_LT4 HD_Z //pq V
 #define HD_LT3 HD_W
 #define HD_LT2 HD_G
 #define HD_LT1 HD_M
@@ -90,9 +90,9 @@
 #define HD_RT2 HD_SLSH
 #define HD_RT3 HD_DQUO
 #define HD_RT4 HD_QUOT
-#define HD_RT5 KC_Z //pq KC_LNG2
+#define HD_RT5 TT(L_FUN) //pq KC_LNG2
 
-#define HD_LM5 KC_ESC
+#define HD_LM5 KC_V  //pq ESC
 #define HD_LM4 HD_S
 #define HD_LM3 HD_N
 #define HD_LM2 HD_T
@@ -105,7 +105,7 @@
 #define HD_RM2 HD_E
 #define HD_RM3 HD_I
 #define HD_RM4 HD_C
-#define HD_RM5 TT(L_FUN)  //pq KC_Z
+#define HD_RM5 HD_Q  //pq KC_Z   (linger adds lowercase u)
 
 #define HD_LB5 KC_TAB
 #define HD_LB4 HD_F
@@ -122,7 +122,7 @@
 #define HD_RB2 HD_O
 #define HD_RB3 HD_Y
 #define HD_RB4 HD_B
-#define HD_RB5 HD_Q // (linger adds lowercase u)
+#define HD_RB5 KC_ESC //pq HD_Q
 
 //Primary Thumbs 1-3 (others are unique to the board)
 #define HD_LH5 KC_DOWN
