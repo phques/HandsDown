@@ -2,29 +2,27 @@
  Adaptive Keys
  Called from early within process_record_user
 
- Tailored for HD Promethium (pm)
+ Tailored for Enthium (en)
 
  NOTE: assumed dual-function keys (MOD_TAP, LAYER_TAP) have already been handled AND
     FILTERED OUT! The combos handler will have already taken out combo candidates,
     which have a shorter keydown threshhold (COMBO_TERM).
 
  */
-//    Base (alpha) Layer  Hands Down Promethium (HRMs /+ thumb mods)
-//      this is canonical Promethium, "inverted" (top-bottom), as
-//      I prefer "bottom heavy" layouts.  If you prefer top heavy,
-//      be sure to invert all rows, as the rolling/scissoring characteristics
-//      that make Promethium what it is depend on the same-row neighbors
-//  ※ arguably, the inner column is less sensitive to this.
+//    Base (alpha) Layer Enthium (HRMs /+ thumb mods)
+//       Define SWAP_QB to swap Q and B
 //            ╭─────────────────────╮                 ╭─────────────────────╮
-// LANG1/mhen │  V   W   G   M   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
-//    esc     │  S   N   T   H   K  | (             ) |  ,;   A   E   I   C │ Z
-//    tab     │  F   P   D   L   X  │ [ copy   pste ] │  -+   U   O   Y   B │ Q(u)
-//            ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
+//    ESC     │  Q/b Y   O   U   =  │ L_CFG     L_NUM │   X   L   D   P   Z │ LANG2/henk
+//     B/q    │  C   I   A   E   -  | (             ) |   K   H   T   N   S │ W
+//    tab     │  '   ,   .   ;   /  │ [ copy   pste ] │   J   M   G   F   V │
+//            ╰───────────╮ spc bsp │ &             | │  ret  R  ╭──────────╯
 //          left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
 // For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
+// and accessible combos (defined below)
 
-
+#include "adaptive.h"
+#include "keycodes.h"
 bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
     bool return_state = true; // assume we don't do anything.
 
@@ -43,49 +41,52 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 
 //        switch (((keycode >= SAFE_RANGE) && (keycode <= SemKeys_COUNT)) ? (keycode) : (keycode & QK_BASIC_MAX)) { // only handling normal, SHFT or ALT cases.
 
+    // ##PQ, these are mostly from Promethium, (adapted for small diffs, for e.g. W is now F)
+
     switch (keycode) { // process ignoring multi-function keys & shift state?
 
+
 /*
-// Left hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
+  Left hand adaptives
 */
-        case KC_D:
-            switch (prior_keycode) { //
-                case KC_P:  // roll PD = PWD? (no side effects?)
-                        tap_code(KC_W);
-                        break; // process the D normally
+
+        case KC_C: // PQ, yq used for y,
+            switch (prior_keycode) {
+                case KC_Y: // YC = YI, avoid sfb
+                    //tap_code(KC_BSPC);
+                    tap_code(KC_I);
+                    return_state = false; // done.
             }
             break;
+
+// PM doesn't use the common vowel block, so…
+//#include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
+
+        case KC_E:
+            switch (prior_keycode) {
+                case KC_A: // "AE" yields "AU" (8x more common) keeping it on home row
+                    tap_code(KC_U);
+                    return_state = false; // done.
+            }
+            break;
+
+/*
+ Rigth hand adaptives (most are single-handed neighbor fingers, bc speed, dexterity limits)
+*/
         case KC_F:
             switch (prior_keycode) {
-                case KC_P: // Eliminate PS scissor (worse on less staggered boards)
-                    tap_code(KC_S); // PF=PS (PS 36x more common)
-                    return_state = false; // done.
-            }
-            break;
-        case KC_G:
-            switch (prior_keycode) {
-                case KC_K: // eliminate index-middle stretch with alt fingering
-                    tap_code(KC_L);  // pull up "L" (KL is 5x more common than KG)
+                case KC_G: // eliminate SFB
+                    tap_code(KC_D); // GF = GD (3.8x more common)
                     return_state = false; // done.
                     break;
-               case KC_M: // eliminate scissor
-                    if (preprior_keycode == KC_W) { // to roll WMG -> lml? (no side effects?)
-                        tap_code(KC_L); // G kecomes L for "LML"
-                        return_state = false; // done.
-                        break; // and let current keycode send normally
-                    }
-                    tap_code(KC_BSPC); // replace M
-                    tap_code(KC_L); // "pull up" L to eliminate scissor
-                    break; // and let current keycode send normally
-                case KC_J: // roll JG => jpg free letter!
-                    tap_code(KC_P); // insert a P
-                    break; // and let current keycode send normally
-                case KC_W:
-                    tap_code(KC_D); // pull up D (WD is 35x more common than WG)
+                case KC_M: // eliminate SFB/scissor
+//                    tap_code(KC_N); // MW = MN (14x more common) (if F is on bottom)
+                    tap_code(KC_P); // MF = MP (if P is on bottom)
                     return_state = false; // done.
                     break;
             }
             break;
+
         case KC_H:
             switch (prior_keycode) {
                 case KC_K: // to avoid the lat stretch
@@ -94,13 +95,14 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     break;
             }
             break;
+
         case KC_J:
             switch (prior_keycode) {
                 case KC_G: // 99.7% of GT are followed by H
                     send_string("th"); // for "length"
                     return_state = false; // done.
                     break;
-                case KC_V: // Eliminate VL Scissor
+                case KC_F: // Eliminate FL Scissor
                 case KC_W: // Eliminate WL scissor
                     tap_code(KC_L); // WJ = wl (WL is 468x more common than WJ)
                     return_state = false; // done.
@@ -113,10 +115,6 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             // pull the L over with alternate fingering to avoid the stretch.
         case KC_K:
             switch (prior_keycode) {
-                case KC_M: // eliminate index-middle stretch with alt fingering
-                    tap_code(KC_BSPC); // replace M
-                    tap_code(KC_L); // MK = LK (LK is 75x more common than GK)
-                    break; // Send K normally
                 case KC_H: // eliminate lateral stretch
                     tap_code(KC_BSPC); // replace H
                     tap_code(KC_N); // HK = NK (219x more common)
@@ -124,16 +122,17 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
-        case KC_L: // catch this so we can unshift L on these involving pinky/ring rolls.
-            switch (prior_keycode) {
-                case KC_P:
-                case KC_B: //
-                case KC_S: //
-                    tap_code(KC_L);  //
-                    return_state = false; // done.
-                    break;
-            }
-            break;
+        // PQ ??
+        // case KC_L: // catch this so we can unshift L on these involving pinky/ring rolls.
+        //     switch (prior_keycode) {
+        //         case KC_P:
+        //         case KC_B: //
+        //         case KC_S: //
+        //             tap_code(KC_L);  //
+        //             return_state = false; // done.
+        //             break;
+        //     }
+        //     break;
 
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
@@ -142,7 +141,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_L);
                     return_state = false; // done.
                     break;
-                case KC_W:
+                case KC_F:
                     switch (preprior_keycode) {
                         case KC_M: // eliminate 2r/2c scissor
                             tap_code(KC_L); // WM = LM (LM 20x more common)
@@ -156,11 +155,12 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                    }
             }
             break;
+
         case KC_P:
             switch (prior_keycode) {
-                case KC_F: // eliminate SP scissor
+                case KC_Z: // eliminate SP scissor
                     tap_code(KC_BSPC); // remove F
-                    tap_code(KC_S);  // FP=SP (SP 860x more common)
+                    tap_code(KC_S);  // ZP=SP (SP 860x more common)
                     break; // Send P normally
                 case KC_P: // eliminate DG sfb
                     tap_code(KC_G);  //
@@ -182,50 +182,29 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
             }
             break;
 
-        case KC_W:
-            switch (prior_keycode) {
-                case KC_G: // eliminate SFB
-                    tap_code(KC_D); // GW = GD (3.8x more common)
-                    return_state = false; // done.
-                    break;
-                case KC_M: // eliminate SFB/scissor
-//                    tap_code(KC_N); // MW = MN (14x more common) (if F is on bottom)
-                    tap_code(KC_P); // MW = MF (if P is on bottom)
-                    return_state = false; // done.
-                    break;
-            }
-            break;
-
-
-
-/*
-// right hand adaptives
-*/
-
-        case KC_B:
-            switch (prior_keycode) {
-                case KC_Y: // avoid ring->pinky scissor
-                    tap_code(KC_BSPC);
-                    tap_code(KC_I);
-                    break; // process the B normally
-            }
-            break;
-// PM doesn't use the common vowel block, so…
-//#include "adapt_h.c" // the common vowel block adaptives (esp. for AU SFB)
-
-        case KC_E:
-            switch (prior_keycode) {
-                case KC_A: // "AE" yields "AU" (8x more common) keeping it on home row
-                    tap_code(KC_U);
-                    return_state = false; // done.
-            }
-            break;
 
 #if defined (HD_MAGIC) || defined (HD_MAGIC_A) || defined (HD_MAGIC_B)
 #include "adapt_magic.c" // the common adaptive "magic" key
 #endif //
 
     }
+
+    //PQ Enthium, left hand
+    switch (KEY_PAIR(prior_keycode, keycode)) {
+#ifndef SWAP_QB
+        REPLACE2NDKEY(KC_Y, KC_Q, KC_COMMA); // YQ = Y, (avoid sfb)
+        REPLACE2NDKEY(KC_B, KC_C, KC_E);     // BC = BE, (avoid stretch)
+        REPLACE2NDKEY(KC_B, KC_Q, KC_U);     // BQ = BU, (avoid stretch)
+#else
+        // PQ, BI is difficult, but not sure how to avoid it.
+        REPLACE2NDKEY(KC_Y, KC_B, KC_COMMA); // YB = Y, (avoid sfb)
+#endif
+        REPLACE2NDKEY(KC_Y, KC_U, KC_DOT);  // YU = Y. (avoid scissor)
+
+        REPLACEPRIOR(KC_DOT, KC_COMMA, KC_O); // ., = o, (avoid sfb)
+        REPLACEPRIOR(KC_COMMA, KC_DOT, KC_O); // ,. = o. (avoid scissor)
+    }
+
     if (return_state)  // no adaptive processed, cancel state and pass it on.
         set_mods(saved_mods);
 

@@ -108,7 +108,7 @@ const uint16_t PROGMEM Hcedi_combo[] = {HD_LM4, HD_LM2, COMBO_END}; // ¸ cedill
 
 // Precomposed letters with diacritics (uses expanded Semantic Keys)
 // This could be a very large numper of comboos, as many as 35 for vowels
-// áàâåäā éèêe̊ëē íìîīï óòôo̊ōü úùûůūü 
+// áàâåäā éèêe̊ëē íìîīï óòôo̊ōü úùûůūü
 // two handed combos with home-row [p, r, m, i, l] + vowel
 // and many more for frequently used consonants
 // two handed combos top/bottom row vowel hand?
@@ -338,6 +338,7 @@ combo_t key_combos[] = {
     [HC_L1] = COMBO(H_L1_combo, HD_L1),
 //    [HC_L2] = COMBO(H_L2_combo, HD_L2),
 //    [HC_L3] = COMBO(H_L3_combo, HD_L3),
+#ifdef EN_HDIGRAPH_COMBOS
     [HC_Ch] = COMBO_ACTION(H_Ch_combo),
     [HC_Sch] = COMBO_ACTION(H_Sch_combo),
     [HC_Gh] = COMBO_ACTION(H_Gh_combo),
@@ -345,7 +346,7 @@ combo_t key_combos[] = {
     [HC_Th] = COMBO_ACTION(H_Th_combo),
     [HC_Sh] = COMBO_ACTION(H_Sh_combo),
     [HC_Wh] = COMBO_ACTION(H_Wh_combo),
-
+#endif
     [HC_OE] = COMBO_ACTION(HOE_lig_combo),  // Œ
     [HC_AE] = COMBO_ACTION(HAE_lig_combo),  // Æ
 
@@ -420,7 +421,7 @@ combo_t key_combos[] = {
 
     // Keypad combos (all need actions or mods, so must be here)
     [PC_STAB] = COMBO_ACTION(PCM2_combo), // shift-<tab> on num
-    
+
     [HC_EQL] = COMBO_ACTION(Hequal_combo), // =  (hold for %)
     [PC_SENT] = COMBO_ACTION(P2E_combo), // shift-<enter> on num
     [PC_TGNM] = COMBO(PNLCK_combo, KC_NUM), // toggle num lock
@@ -456,7 +457,7 @@ combo_t key_combos[] = {
     [FC_LANG1] = COMBO(H_KANA_combo, SK_HENK), // kana (others)
 
     [HC_NDSH] = COMBO_ACTION(Hndsh_combo), // – N-DASH (hold for M-dash)
-    
+
 // Dead keys (Mac only, for now)
     [HC_ACUT] = COMBO_ACTION(Hacut_combo), // ´ acute
     [HC_GRV] = COMBO_ACTION(Hgrv_combo), // ` grave
@@ -538,7 +539,7 @@ combo_t key_combos[] = {
 #ifdef HD_here_keys
     [HC_here_4gram] = COMBO_ACTION(H_here_combo), // TYPE "here" #9
 #endif
-    
+
 #ifdef LeftComboTapE
     [HC_TYPE_LEFTCOMBO] = COMBO_ACTION(H_Left_combo), // a personally useful 5-8gram!
 #endif

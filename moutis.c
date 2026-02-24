@@ -38,14 +38,14 @@ bool IS_ENGLISH_MODE = true;
 const modmorph_t ModMorph[mm_count] = {
 // linger?, keycode,    shifted,    alt,        altshft
     {true,  KC_DOT,     KC_COLN,    SK_ELPS,    SK_NOTEQ},  // ., SHIFT = :, ALT= …, ALT+SHIFT= ≠
-    {true,  KC_QUOT,    KC_GT,      SK_FDQR,    SK_FSQR },  // ', SHIFT = >, ALT= », ALT+SHIFT= ›
-    {true,  KC_DQUO,    KC_LT,      SK_FDQL,    SK_FSQL },  // ", SHIFT = <, ALT= «, ALT+SHIFT= ‹
+    {true,  ERQU,       KC_GT,      SK_FDQR,    SK_FSQR },  // ', SHIFT = >, ALT= », ALT+SHIFT= ›
+    {true,  ELQU,       KC_LT,      SK_FDQL,    SK_FSQL },  // ", SHIFT = <, ALT= «, ALT+SHIFT= ‹
     {false, KC_SCLN,    KC_COLN,    SK_PARA,    SK_SECT },  // ", SHIFT = —, ALT= ¶, ALT+SHIFT= §
     {false, KC_COLN,    SK_ELPS,    KC_PERC,    SK_PERM },  // ", SHIFT = —, ALT= ¶, ALT+SHIFT= §
 };
 #endif // MYMODMORPH
-uint16_t L_quote = KC_DQUO; // default " (「 in Japanese mode)
-uint16_t R_quote = KC_QUOT; // default ' (」 in Japanese mode)
+uint16_t L_quote = ELQU; //PQ KC_DQUO; // default " (「 in Japanese mode)
+uint16_t R_quote = ERQU; //PQ KC_QUOT; // default ' (」 in Japanese mode)
 
 #ifdef RGBLIGHT_ENABLE
 int RGB_current_mode;
@@ -54,6 +54,7 @@ int RGB_current_mode;
 uint8_t  combo_on = 0;           // for combo actions with hold behaviors
 bool  combo_triggered = false;   // for one-shot-combo-actions
 
+__attribute__ ((unused))
 layer_state_t layer_state_set_user(layer_state_t layer_state) {
 
 /*
@@ -105,6 +106,7 @@ layer_state_t layer_state_set_user(layer_state_t layer_state) {
     return layer_state;
 }
 
+__attribute__ ((unused))
 void keyboard_post_init_user(void) {
     // Read the user config from EEPROM to facilitate
     // appropriate platform support

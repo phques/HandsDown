@@ -18,6 +18,8 @@ typedef union {
     };
 } user_config_t; // used for persistent memory of settings (only 16 bytes avail on AVR?)
 
+
+//#define MYMODMORPH // use the table for modmorph
 typedef struct {
     bool linger;
     uint32_t plain;
@@ -94,7 +96,7 @@ extern rgblight_config_t rgblight_config;
 // defines all variation dependent constants/files/keycodes, etc.
 // they will be used in the respective keymap for each keyboard
 
-#include "personalizedmacros.h"
+//#include "personalizedmacros.h"
 
 //
 // which HD alpha variation are we using?
@@ -115,7 +117,7 @@ extern rgblight_config_t rgblight_config;
 // mi = mithril (R on thumb)
 // xr = weird test-bed (R on thumb)
 
-#define HD_CONFIG "handsdown/vf-config.h"
+#define HD_CONFIG "handsdown/en-config.h"
 
 //
 // HD_CONFIG defines all variation dependent constants/files/keycodes, etc.
@@ -137,13 +139,14 @@ extern rgblight_config_t rgblight_config;
 // Adaptive (or MAGIC) keys are like a QMK Leader Key, but after (Adaptive Trailer)
 #define ADAPTIVE_ENABLE
 #define ADAPT_SHIFT KC_COMM // keycode to precede alpha for one-shot shift (leader)
-#define ADAPT_H // eliminate SFBs AU/UA;EO/OE;LN;MN;NN using H (instead of ')
-#define ADAPT_AE_AU // Use AE->AU (instead of AH->AU, AH is somewhat common)
+// PM doesn't use the common vowel block, so…
+//#define ADAPT_H // eliminate SFBs AU/UA;EO/OE;LN;MN;NN using H (instead of ')
+//#define ADAPT_AE_AU // Use AE->AU (instead of AH->AU, AH is somewhat common)
 //#define FR_ADAPTIVES // eliminate 'h SFB for French
 //#define DE_ADAPTIVES // alternate AU SFB treatment for German (same as ADAPT_AE_AU)
 #define HD_MAGIC HD_HASH // generic MAGIC_KEY (I use for text macros)
-//#define HD_MAGIC_A KC_ENT // MAGIC_KEY dependent on alpha (vowel hand?)
-#define HD_MAGIC_B KC_BSPC // MAGIC_KEY dependent on alpha (consonant hand?)
+#define HD_MAGIC_A KC_ENT // MAGIC_KEY dependent on alpha (vowel hand?)
+//#define HD_MAGIC_B KC_BSPC // MAGIC_KEY dependent on alpha (consonant hand?)
 
 #ifdef COMBO_HOLD
     #undef ADAPTIVE_TERM
@@ -171,15 +174,28 @@ extern rgblight_config_t rgblight_config;
 // Perhaps simply redefining these in the xx-config.h
 // to override these defs would be the right approach?
 //
-#define DQUO_S  KC_GT // >
-#define DQUO_A  A(S(KC_BSLS)) // »
-#define DQUO_SA A(S(KC_4)) // ›
-#define SQUO_S  KC_LT // <
-#define SQUO_A  A(KC_BSLS) // «
-#define SQUO_SA A(S(KC_3)) // ‹
 
-#define JLQU KC_LBRC //  「 (via " in Japanese mode)
-#define JRQU KC_RBRC //  」 (via ' in Japanese mode)
+// #define DQUO_S  KC_GT // >
+// #define DQUO_A  A(S(KC_BSLS)) // »
+// #define DQUO_SA A(S(KC_4)) // ›
+// #define SQUO_S  KC_LT // <
+// #define SQUO_A  A(KC_BSLS) // «
+// #define SQUO_SA A(S(KC_3)) // ‹
+
+// Define left and right quote, normally ' and ", but swapped in some variations
+#define REVERSED_QUOTES
+
+#ifndef REVERSED_QUOTES
+#define JLQU KC_LBRC    //  「 (via " in Japanese mode)
+#define JRQU KC_RBRC    //  」 (via ' in Japanese mode)
+#define ELQU KC_DQUO    // default "
+#define ERQU KC_QUOT    // default '
+#else
+#define JLQU KC_RBRC    //  」 (via ' in Japanese mode)
+#define JRQU KC_LBRC    //  「 (via " in Japanese mode)
+#define ELQU KC_QUOT    // default '
+#define ERQU KC_DQUO    // default "
+#endif
 
 #define tap_HDkey(kc) ({is_SemKey(kc) ? tap_SemKey(kc) : tap_code16(kc);})
 #define register_HDkey(kc) ({is_SemKey(kc) ? register_SemKey(kc) : register_code16(kc);})

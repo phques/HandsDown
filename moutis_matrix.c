@@ -1,5 +1,6 @@
 
 
+__attribute__ ((unused))
 void matrix_scan_user(void) {
 
 #ifdef COMBO_ENABLE
@@ -32,7 +33,7 @@ void matrix_scan_user(void) {
             return;
         }
     }
-        
+
 //
 // prior register_linger_key(kc) needs to be handled here
 //

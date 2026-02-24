@@ -1,6 +1,6 @@
 //
 //  moutis_layers.h
-//  
+//
 //
 //  Created by Alan on 6/23/23.
 //
@@ -26,7 +26,7 @@
 /*  L_SYM Symbols and punctuation (Some via SemKeys/unicode for platform independance)
  *  left paired symbols are "linger keys" via hold taps. Tap for left, hold for pair with insertion point between
    ╭────────────────────────────────────────────╮                  ╭──────────────────────────────────────────╮
-__ │    Z       Q       ¶        †        ‡     │                  │     ¢        $       €       £       ¥   │ __
+__ │    Z       Q       ¶        †        ‡     │                  │     ¢        $       #(€)    £       ¥   │ __
 __ │    §       [       (        {        •     |                  |     /        =       *       +       -   │ __
 __ │    °      ]       )        }         ·     │ __  __   __  __  │     ^        |       &       <       >   │ __
    ╰──────────────────╮ VolD   D_WordL  D_WordR │ --           __  │     _        ¡       ¿     ╭─────────────╯
@@ -41,7 +41,7 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 #define LS_LT0 SK_DCRS // ‡
 #define LS_RT0 SK_CENT // ¢
 #define LS_RT1 KC_DLR  // $
-#define LS_RT2 SK_EURO // €
+#define LS_RT2 HD_HASH //PQ SK_EURO €
 #define LS_RT3 SK_BPND // £
 #define LS_RT4 SK_JPY  // ¥
 #define LS_RT5 KC_TRNS
@@ -53,7 +53,7 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 #define LS_LM1 KC_LCBR
 #define LS_LM0 SK_BBLT // SK_BLLT?
 #define LS_RM0 KC_PSLS // /
-#define LS_RM1 RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
+#define LS_RM1 RSFT_T(KC_EQL)  //pq KC_PEQL not working on my Windows RSFT_T(KC_PEQL) // RSFT_T(KC_PAST)
 #define LS_RM2 RGUI_T(KC_PAST) // RGUI_T(KC_PEQL)
 #define LS_RM3 RALT_T(KC_PPLS)
 #define LS_RM4 RCTL_T(KC_PMNS) // RCTL_T(KC_PSLS)
@@ -85,7 +85,7 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 #define LS_LHA KC_VOLD
 #define LS_RHA KC_VOLU
 #define LS_RH0 KC_VOLU   // also right encoder hat switch
-#define LS_RH1 KC_UNDS // _ 
+#define LS_RH1 KC_UNDS // _
 #define LS_RH2 SK_IEXC // ¡
 #define LS_RH3 SK_IQUE // ¿
 #define LS_RH4 SK_WORDPRV // also right encoder CCW
@@ -161,13 +161,13 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 
 
 /*  L_NUM Navigation (left) NUMPad Layer (right) (LN)
- //                                        Nav & NumPad (standard)
- //╭─────────────────────────────────────────────╮ ╭────────────────────────────────────────╮
- //|   Top  |  HOME  |   UP   |  PG_UP |   ¶up   | |    /   |   7   |   8   |   9   |   -   |
- //|  Lword |  LEFT  |  DOWN  |   RGT  |  Rword  | |    *   |  S/4  |  G/5  |  A/6  |  C/+  |
- //|   Bot  |   END  |   SPC  |  PG_DN |   ¶dn   | |    ,   |   1   |   2   |   3   |   =   |
- //╰─────────────────╮   tog  |  BSPC  |KP_ENTER | |    0   |   .   |  tog  ╭───────────────╯
- //                  ╰───────────────────────────╯ ╰────────────────────────╯
+                                         Nav & NumPad (standard)
+ ╭─────────────────────────────────────────────╮ ╭────────────────────────────────────────╮
+ |   Top  |  HOME  |   UP   |  PG_UP |   ¶up   | |    /   |   7   |   8   |   9   |   -   |
+ |  Lword |  LEFT  |  DOWN  |   RGT  |  Rword  | |    *   |  S/4  |  G/5  |  A/6  |  C/+  |
+ |   Bot  |   END  |   SPC  |  PG_DN |   ¶dn   | |    ,   |   1   |   2   |   3   |   =   |
+ ╰─────────────────╮   tog  |  BSPC  |KP_ENTER | |    0   |   .   |  tog  ╭───────────────╯
+                   ╰───────────────────────────╯ ╰────────────────────────╯
 */
 
 #define LN_LT5 KC_TRNS
@@ -318,7 +318,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_RT3 KC_LALT
 #define LC_RT4 LCA(KC_DEL)
 #define LC_RT5 RGB_MOD
- 
+
 #define LC_LM5 RGB_VAI
 #define LC_LM4 HD_AdaptKeyToggle
 #ifdef HD_L_QWERTY
@@ -336,7 +336,7 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_RM3 KC_MNXT
 #define LC_RM4 EE_CLR
 #define LC_RM5 RGB_SAI
- 
+
 #define LC_LB5 RGB_HUI
 #define LC_LB4 QK_BOOT
 #define LC_LB3 AG_SWAP

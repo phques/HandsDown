@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../../keyboards/zsa/voyager/keymaps/handsDown"
+		}
+	],
+	"settings": {}
+}

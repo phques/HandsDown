@@ -2,11 +2,8 @@
 //
 // The Hands Down Variation dependent defs & files
 //
-#define HD_adaptive_code "handsdown/pm-adaptive.c"
+#define HD_adaptive_code "handsdown/pm-adaptive-pqa.c"
 //
-// https://cyanophage.github.io/index.html#hd-promethium
-// if you prefer bottom-heavy layouts, just invert the layout and the effort grid with this effort map: 5,4,2,2,2,7,7,2,2,2,4,5,5,1,0,0,0,5,5,0,0,0,1,5,7,3,2,1,1,6,6,1,1,2,3,7
-// If you have short fingers, inverting may be perferable to having to reach between a thumb alpha and an related bigram.
 
 //
 // First, let's define HD alpha keycodes with any hold-taps/custom keycodes
@@ -18,19 +15,19 @@
 #define HD_E RGUI_T(KC_E)
 #define HD_F LT(L_FUN, KC_F)
 #define HD_G KC_G
-#define HD_H RSFT_T(KC_H)
+#define HD_H LSFT_T(KC_H) //pq RSFT_T(KC_H)
 #define HD_I RALT_T(KC_I)
 #define HD_J KC_J
 #define HD_K LT(L_NUM,KC_K)
 #define HD_L KC_L
 #define HD_M KC_M
-#define HD_N RALT_T(KC_N)
+#define HD_N LALT_T(KC_N) //pq RALT_T(KC_N)
 #define HD_O KC_O
 #define HD_P KC_P
 #define HD_Q KC_Q
 #define HD_R LT(L_NAV,KC_R)
-#define HD_S RCTL_T(KC_S)
-#define HD_T RGUI_T(KC_T)
+#define HD_S LCTL_T(KC_S) // pq RCTL_T(KC_S)
+#define HD_T LGUI_T(KC_T) // pq RGUI_T(KC_T)
 #define HD_U KC_U
 #define HD_V KC_V
 #define HD_W KC_W
@@ -70,9 +67,9 @@
 //      that make Promethium what it is depend on the same-row neighbors
 //  ※ arguably, the inner column is less sensitive to this.
 //            ╭─────────────────────╮                 ╭─────────────────────╮
-// LANG1/mhen │  V   W   G   M   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
-//    esc     │  S   N   T   H   K  | (             ) |  ,;   A   E   I   C │ Z
-//    tab     │  F   P   D   L   X  │ [ copy   pste ] │  -+   U   O   Y   B │ Q(u)
+// LANG1/mhen │  Z   W   G   M   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
+//     V      │  S   N   T   H   K  | (             ) |  ,;   A   E   I   C │ Q(u)
+//    tab     │  F   P   D   L   X  │ [ copy   pste ] │  -+   U   O   Y   B │ Esc
 //            ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
 //          left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
@@ -80,8 +77,8 @@
 // and accessible combos (defined below)
 //
 
-#define HD_LT5 KC_LNG1
-#define HD_LT4 HD_V
+#define HD_LT5 TG(L_NAV) //pq KC_LNG1
+#define HD_LT4 HD_Z //pq V
 #define HD_LT3 HD_W
 #define HD_LT2 HD_G
 #define HD_LT1 HD_M
@@ -93,9 +90,9 @@
 #define HD_RT2 HD_SLSH
 #define HD_RT3 HD_DQUO
 #define HD_RT4 HD_QUOT
-#define HD_RT5 KC_LNG2
+#define HD_RT5 TT(L_FUN) //pq KC_LNG2
 
-#define HD_LM5 KC_ESC
+#define HD_LM5 KC_V  //pq ESC
 #define HD_LM4 HD_S
 #define HD_LM3 HD_N
 #define HD_LM2 HD_T
@@ -108,7 +105,7 @@
 #define HD_RM2 HD_E
 #define HD_RM3 HD_I
 #define HD_RM4 HD_C
-#define HD_RM5 KC_Z
+#define HD_RM5 HD_Q  //pq KC_Z   (linger adds lowercase u)
 
 #define HD_LB5 KC_TAB
 #define HD_LB4 HD_F
@@ -125,7 +122,7 @@
 #define HD_RB2 HD_O
 #define HD_RB3 HD_Y
 #define HD_RB4 HD_B
-#define HD_RB5 HD_Q // (linger adds lowercase u)
+#define HD_RB5 KC_ESC //pq HD_Q
 
 //Primary Thumbs 1-3 (others are unique to the board)
 #define HD_LH5 KC_DOWN
@@ -196,6 +193,8 @@
 //#define HD_L2 HD_X
 //#define HD_L3_keys HD_LM3, HD_LM1 // ex. TYPE "j"
 //#define HD_L3 HD_J
+
+#define HD_ing_keys HD_RM3, HD_LM3 // PQ TYPE "ing"
 
 //
 // H digraph combos -- strictly optional! In fact,

@@ -2,24 +2,29 @@
 //
 // The Hands Down Variation dependent defs & files
 //
-#define HD_adaptive_code "handsdown/pm-adaptive.c"
+#define HD_adaptive_code "handsdown/en-adaptive.c"
 //
-// https://cyanophage.github.io/index.html#hd-promethium
-// if you prefer bottom-heavy layouts, just invert the layout and the effort grid with this effort map: 5,4,2,2,2,7,7,2,2,2,4,5,5,1,0,0,0,5,5,0,0,0,1,5,7,3,2,1,1,6,6,1,1,2,3,7
-// If you have short fingers, inverting may be perferable to having to reach between a thumb alpha and an related bigram.
+// Enthium https://github.com/sunaku/enthium
+
+// Define this to swap Q and B
+//#define SWAP_QB
 
 //
 // First, let's define HD alpha keycodes with any hold-taps/custom keycodes
 //
-#define HD_A RSFT_T(KC_A)
+#define HD_A RGUI_T(KC_A)
+#ifndef SWAP_QB
 #define HD_B KC_B
+#else
+#define HD_B KC_Q
+#endif
 #define HD_C RCTL_T(KC_C)
 #define HD_D KC_D
-#define HD_E RGUI_T(KC_E)
-#define HD_F LT(L_FUN, KC_F)
+#define HD_E RSFT_T(KC_E)
+#define HD_F KC_F // PQ LT(L_FUN, KC_F)
 #define HD_G KC_G
 #define HD_H RSFT_T(KC_H)
-#define HD_I RALT_T(KC_I)
+#define HD_I LALT_T(KC_I)
 #define HD_J KC_J
 #define HD_K LT(L_NUM,KC_K)
 #define HD_L KC_L
@@ -27,8 +32,12 @@
 #define HD_N RALT_T(KC_N)
 #define HD_O KC_O
 #define HD_P KC_P
+#ifndef SWAP_QB
 #define HD_Q KC_Q
-#define HD_R LT(L_NAV,KC_R)
+#else
+#define HD_Q KC_B
+#endif
+#define HD_R LT(L_SYM,KC_R) // Keep layer accesses on same hands as HD PM
 #define HD_S RCTL_T(KC_S)
 #define HD_T RGUI_T(KC_T)
 #define HD_U KC_U
@@ -40,9 +49,9 @@
 
 #define HD_MINS KC_MINS
 #define HD_HASH KC_HASH
-#define HD_SPC  LT(L_SYM,KC_SPC)
-#define HD_BSPC LT(L_FUN,KC_BSPC)
-#define HD_ENT  LT(L_NAV,KC_ENT)
+#define HD_SPC  LT(L_NAV,KC_SPC)    // Keep layer accesses on same hands as HD PM
+#define HD_BSPC LT(L_FUN,KC_BSPC)   // Keep layer accesses on same hands as HD PM
+#define HD_ENT  LT(L_NAV,KC_ENT)    // Keep layer accesses on same hands as HD PM
 #define HD_QUOT KC_QUOT
 #define HD_DQUO KC_DQUO // linger for “” via SK_SDQU
 #define HD_SLSH KC_SLSH
@@ -63,85 +72,99 @@
 //     LH5 LH4 LH3 ╰─────────╯                  ╰─────────╯ RH3 RH4 RH5
 //
 //
-//    Base (alpha) Layer  Hands Down Promethium (HRMs /+ thumb mods)
-//      this is canonical Promethium, "inverted" (top-bottom), as
-//      I prefer "bottom heavy" layouts.  If you prefer top heavy,
-//      be sure to invert all rows, as the rolling/scissoring characteristics
-//      that make Promethium what it is depend on the same-row neighbors
-//  ※ arguably, the inner column is less sensitive to this.
+//    Base (alpha) Layer Enthium (HRMs /+ thumb mods)
+//       Define SWAP_QB (above) to swap Q and B
+// Modified version, using same symbols as PM.
 //            ╭─────────────────────╮                 ╭─────────────────────╮
-// LANG1/mhen │  V   W   G   M   J  │ L_CFG     L_NUM │  #$  .:  /*  "[  '] │ LANG2/henk
-//    esc     │  S   N   T   H   K  | (             ) |  ,;   A   E   I   C │ Z
-//    tab     │  F   P   D   L   X  │ [ copy   pste ] │  -+   U   O   Y   B │ Q(u)
-//            ╰───────────╮ bsp  R  │ &             | │ spc  ret ╭──────────╯
+//    ESC     │  Q/b Y   O   U   #$ │ L_CFG     L_NUM │   X   L   D   P   Z │ TG(L_FUN)
+//     B/q    │  C   I   A   E   -+ | (             ) |   K   H   T   N   S │ W
+//    tab     │  '[  ,;  .:  "]  /* │ [ copy   pste ] │   J   M   G   F   V │ Caps
+//            ╰───────────╮ spc bsp │ &             | │  ret  R  ╭──────────╯
+//          left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
+//
+// Original version (in the 'boxes')
+//            ╭─────────────────────╮                 ╭─────────────────────╮
+//    ESC     │  Q   Y   O   U   =  │ L_CFG     L_NUM │   X   L   D   P   Z │
+//     B      │  C   I   A   E   -  | (             ) |   K   H   T   N   S │ W
+//    tab     │  '   ,   .   ;   /  │ [ copy   pste ] │   J   M   G   F   V │
+//            ╰───────────╮ spc bsp │ &             | │  ret  R  ╭──────────╯
 //          left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
 // For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
 // and accessible combos (defined below)
 //
 
-#define HD_LT5 KC_LNG1
-#define HD_LT4 HD_V
-#define HD_LT3 HD_W
-#define HD_LT2 HD_G
-#define HD_LT1 HD_M
-#define HD_LT0 HD_J
+#define HD_LT5 KC_ESC       //PQ KC_LNG1
+#define HD_LT4 HD_Q
+#define HD_LT3 HD_Y
+#define HD_LT2 HD_O
+#define HD_LT1 HD_U
+#define HD_LT0 HD_HASH
 #define HD_LTA LT(L_CFG, KC_MUTE)
 #define HD_RTA LT(L_CFG, KC_MPLY)
-#define HD_RT0 HD_HASH
-#define HD_RT1 HD_DOT
-#define HD_RT2 HD_SLSH
-#define HD_RT3 HD_DQUO
-#define HD_RT4 HD_QUOT
-#define HD_RT5 KC_LNG2
+#define HD_RT0 HD_X
+#define HD_RT1 HD_L
+#define HD_RT2 HD_D
+#define HD_RT3 HD_P
+#define HD_RT4 HD_Z
+#define HD_RT5 TG(L_FUN) //KC_LNG1
 
-#define HD_LM5 KC_ESC
-#define HD_LM4 HD_S
-#define HD_LM3 HD_N
-#define HD_LM2 HD_T
-#define HD_LM1 HD_H
-#define HD_LM0 HD_K
+#define HD_LM5 HD_B
+#define HD_LM4 HD_C
+#define HD_LM3 HD_I
+#define HD_LM2 HD_A
+#define HD_LM1 HD_E
+#define HD_LM0 HD_MINS
 #define HD_LMA KC_LPRN
 #define HD_RMA KC_RPRN
-#define HD_RM0 HD_COMM
-#define HD_RM1 HD_A
-#define HD_RM2 HD_E
-#define HD_RM3 HD_I
-#define HD_RM4 HD_C
-#define HD_RM5 KC_Z
+#define HD_RM0 HD_K
+#define HD_RM1 HD_H
+#define HD_RM2 HD_T
+#define HD_RM3 HD_N
+#define HD_RM4 HD_S
+#define HD_RM5 KC_W
 
 #define HD_LB5 KC_TAB
-#define HD_LB4 HD_F
-#define HD_LB3 HD_P
-#define HD_LB2 HD_D
-#define HD_LB1 HD_L
-#define HD_LB0 HD_X
+#define HD_LB4 HD_QUOT
+#define HD_LB3 HD_COMM
+#define HD_LB2 HD_DOT
+#define HD_LB1 HD_DQUO
+#define HD_LB0 HD_SLSH
 #define HD_LBA SK_DKT8 // Dictate (speech to text)
 #define HD_LBB SK_FIND // find
 #define HD_RBB SK_FAGN // find again
 #define HD_RBA SK_AIVC // AI voice control (Siri/Cortana)
-#define HD_RB0 HD_MINS
-#define HD_RB1 HD_U
-#define HD_RB2 HD_O
-#define HD_RB3 HD_Y
-#define HD_RB4 HD_B
-#define HD_RB5 HD_Q // (linger adds lowercase u)
+#define HD_RB0 HD_J
+#define HD_RB1 HD_M
+#define HD_RB2 HD_G
+#define HD_RB3 HD_F
+#define HD_RB4 HD_V
+#define HD_RB5 KC_CAPS // KC_LNG2
 
 //Primary Thumbs 1-3 (others are unique to the board)
 #define HD_LH5 KC_DOWN
 #define HD_LH4 KC_UP
 #define HD_LH3 KC_APP
-#define HD_LH2 HD_BSPC
-#define HD_LH1 HD_R
+#define HD_LH1 HD_BSPC
+#define HD_LH2 HD_SPC
 #define HD_LH0 LT(L_CFG,KC_MUTE)
 #define HD_LHA SK_DKT8 // Dictate (speech to text)
 #define HD_RHA SK_AIVC // AI voice control (Siri/Cortana)
 #define HD_RH0 LT(L_CFG,KC_MPLY)
-#define HD_RH1 HD_SPC
-#define HD_RH2 HD_ENT
+#define HD_RH1 HD_ENT
+#define HD_RH2 HD_R
 #define HD_RH3 TG(L_NUM)
 #define HD_RH4 KC_LEFT
 #define HD_RH5 KC_RGHT
+
+// Since ' and " are are not in the same place, we need to redefine these,
+// to keep the order of [ ]
+#define DQUO_S  KC_GT // >
+#define DQUO_A  A(S(KC_BSLS)) // »
+#define DQUO_SA A(S(KC_4)) // ›
+#define SQUO_S  KC_LT // <
+#define SQUO_A  A(KC_BSLS) // «
+#define SQUO_SA A(S(KC_3)) // ‹
 
 //
 // We want to be able to define a combo by location
@@ -204,20 +227,24 @@
 // try to make these use the lead letter and a neighbor.
 // (listed here in order of frequency as per Mayzner: https://norvig.com/mayzner.html)
 //
-#define HD_Th_keys HD_LM2, HD_LM1 // TYPE "th"
+#define HD_Th_keys HD_RM2, HD_RM1 // TYPE "th"
+
 #ifndef EN_PRONOUN_COMBOS
-#define HD_Ch_keys HD_RM3, HD_RM4 // TYPE "ch" // same as "I" HD_Icap_keys
+#define HD_Ch_keys HD_RM3, HD_LM4 // TYPE "ch" // same as "I" HD_Icap_keys
 #else
-#define HD_Ch_keys HD_LM3, HD_LM2 // TYPE "ch" // so keep as in Vibranium
+#define HD_Ch_keys HD_RM3, HD_RM2 // TYPE "ch" // so keep as in Vibranium
 #endif
-#define HD_Wh_keys HD_LT3, HD_LT2 // TYPE "wh"
+
+#define HD_Wh_keys HD_RM4, HD_RM5 // TYPE "wh"
 #define HD_Sh_keys HD_LM4, HD_LM3 // TYPE "sh"
+
 #ifndef EN_PRONOUN_COMBOS
-#define HD_Ph_keys HD_RB3, HD_RB4 // TYPE "ph" // default position
+#define HD_Ph_keys HD_LB3, HD_LB4 // TYPE "ph" // default position
 #else
-#define HD_Ph_keys HD_LB3, HD_LB1 // TYPE "ph"  // keep as in Vibranium
+#define HD_Ph_keys HD_RT2, HD_RT3 // TYPE "ph"  // keep as in Vibranium
 #endif
-#define HD_Gh_keys HD_LT2, HD_LT1 // TYPE "gh"
+
+#define HD_Gh_keys HD_RB1, HD_RB2 // TYPE "gh"
 #define HD_Sch_keys HD_LM4, HD_LM3, HD_LM2 // TYPE "Sch"
 
 // Should we put all the diacritic keys here?
@@ -243,15 +270,16 @@
 #define HD_youve_keys HD_Y, HD_V  // TYPE "you've"
 #define HD_your_keys  HD_Y, HD_R  // TYPE "your"
 
+// PQ I used the physical positions as HD PM
 #define HD_their_keys HD_T, HD_R  // TYPE "their" #6 (R on same finger in Neu)
-#define HD_theyre_keys HD_T, HD_F // "they're"  (R on same finger in Neu)
-#define HD_they_keys  HD_T, HD_W  // "they" #23 + 've (near they)
-#define HD_theyll_keys HD_T, HD_M // "they'll" #23 + 've (M is easier to combo, also in We'll)
-#define HD_theyd_keys HD_T, HD_F  // "they'd" #23 + 've (no rationale for this, but no SFCombo)
+#define HD_theyre_keys HD_T, HD_V // "they're"  (R on same finger in Neu)
+#define HD_they_keys  HD_T, HD_P  // "they" #23 + 've (near they)
+#define HD_theyll_keys HD_T, HD_L // "they'll" #23 + 've (M is easier to combo, also in We'll)
+//#define HD_theyd_keys HD_T, HD_F  // "they'd" #23 + 've (no rationale for this, but no SFCombo)
 
 // deictics. Are these really necessary? (never used them regularly)
-//#define HD_there_keys HD_T, HD_F  // TYPE "there" #7 + 's
-//#define HD_here_keys  HD_H, HD_F  // TYPE "here" #5 + 's
+#define HD_there_keys HD_T, HD_F  // TYPE "there" #7 + 's
+#define HD_here_keys  HD_H, HD_F  // TYPE "here" #5 + 's
 
 #ifdef EN_W_PRONOUNS
 #define HD_where_keys HD_V, HD_R  // "where" + 's

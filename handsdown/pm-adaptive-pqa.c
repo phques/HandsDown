@@ -25,6 +25,7 @@
 // For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
 
 
+#include "keycodes.h"
 bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
     bool return_state = true; // assume we don't do anything.
 
@@ -50,9 +51,12 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
 */
         case KC_D:
             switch (prior_keycode) { //
-                case KC_P:  // roll PD = PWD? (no side effects?)
-                        tap_code(KC_W);
+                case KC_B:
+                    if (preprior_keycode == KC_P) { // roll PLD = PWD? (no side effects?)
+                        tap_code(KC_BSPC);
+                        tap_code(KC_W); // replace the L with W
                         break; // process the D normally
+                    }
             }
             break;
         case KC_F:
@@ -100,7 +104,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     send_string("th"); // for "length"
                     return_state = false; // done.
                     break;
-                case KC_V: // Eliminate VL Scissor
+                //pq V was replaced by Z
+                //case KC_V: // Eliminate VL Scissor
                 case KC_W: // Eliminate WL scissor
                     tap_code(KC_L); // WJ = wl (WL is 468x more common than WJ)
                     return_state = false; // done.
@@ -129,7 +134,7 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                 case KC_P:
                 case KC_B: //
                 case KC_S: //
-                    tap_code(KC_L);  //
+                    tap_code(KC_L);  // pull up "L" (PL is 15x more common than PM)
                     return_state = false; // done.
                     break;
             }
@@ -138,7 +143,8 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
         case KC_M: // M becomes L (pull up "L" to same row)
             switch (prior_keycode) {
                 case KC_G: // eliminate scissor (GL is 5x more common than GM)
-                case KC_V: // eliminate VL scissor ()
+                //pq V was replaced by Z
+                //case KC_V: // eliminate VL scissor ()
                     tap_code(KC_L);
                     return_state = false; // done.
                     break;
@@ -146,6 +152,13 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     switch (preprior_keycode) {
                         case KC_M: // eliminate 2r/2c scissor
                             tap_code(KC_L); // WM = LM (LM 20x more common)
+                            return_state = false; // done.
+                            break;
+                        case KC_SPC: // pq, trying out 'secondary adaptive'
+                            tap_code(KC_BSPC);
+                            tap_code(KC_BSPC);
+                            tap_code(KC_P);
+                            tap_code(KC_M);
                             return_state = false; // done.
                             break;
                         default:
@@ -162,25 +175,25 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_BSPC); // remove F
                     tap_code(KC_S);  // FP=SP (SP 860x more common)
                     break; // Send P normally
-                case KC_P: // eliminate DG sfb
-                    tap_code(KC_G);  //
-                    return_state = false; // done.
-                    break; //
             }
             break;
 
-        case KC_V:
-            switch (prior_keycode) {
-                case KC_G: // "GT" is 363x more frequent than "GV"
-                    tap_code(KC_T); // eliminate GT SFB.
-                    return_state = false; // done.
-                    break;
-                case KC_M: // eliminate LV scissor.
-                    tap_code(KC_BSPC); // replace M
-                    tap_code(KC_L); // "LV" is 119x more frequent than "MV"
-                    break;
-            }
-            break;
+        // case KC_V:
+        //     switch (prior_keycode) {
+        //         case KC_G: // "GT" is 363x more frequent than "GV"
+        //             tap_code(KC_T); // eliminate GT SFB.
+        //             return_state = false; // done.
+        //             break;
+        //         case KC_M: // eliminate LV scissor.
+        //             tap_code(KC_BSPC); // replace M
+        //             tap_code(KC_L); // "LV" is 119x more frequent than "MV"
+        //             break;
+        //         case KC_W: // pq eliminate WN SFB. (wanted this to be WS, but it's not too bad to type and WN is more common)
+        //             tap_code(KC_N); // WV => WN
+        //             return_state = false; // done.
+        //             break;
+        //     }
+        //     break;
 
         case KC_W:
             switch (prior_keycode) {
@@ -193,9 +206,30 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_P); // MW = MF (if P is on bottom)
                     return_state = false; // done.
                     break;
+                case KC_Z: // pq eliminate SW scissor
+                    tap_code(KC_BSPC); // remove Z
+                    tap_code(KC_S); // ZW => SW
+                    break;
             }
             break;
 
+        //pq Z replaces V
+        case KC_Z:
+            switch (prior_keycode) {
+                case KC_G: // for "GT"
+                    tap_code(KC_T); // eliminate GT SFB.
+                    return_state = false; // done.
+                    break;
+                // case KC_M: // eliminate LV scissor.
+                //     tap_code(KC_BSPC); // replace M
+                //     tap_code(KC_L); // "LV" is 119x more frequent than "MV"
+                //     break;
+                case KC_W: // pq eliminate WN SFB. (wanted this to be WS, but it's not too bad to type and WN is more common)
+                    tap_code(KC_N); // WZ => WN
+                    return_state = false; // done.
+                    break;
+            }
+            break;
 
 
 /*

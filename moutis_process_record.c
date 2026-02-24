@@ -1,10 +1,10 @@
 /*
 
  Set keyboard on host to ANSI (not ISO/JIS for now. will eventually invert this.)
- 
+
  */
 
-
+__attribute__ ((unused))
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     bool return_state = true;
@@ -59,10 +59,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
     }
 #endif // #ifdef ADAPTIVE_ENABLE
-    
+
     // Do we turn off CAPS_WORD?
     if (caps_word_timer) {
-        if (!process_caps_word(keycode, record)) {
+        if (!process_caps_wordMoutis(keycode, record)) {
             return false; // took care of that key
         }
     }
@@ -78,7 +78,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         process_APP_MENU(record);
         return false; // took care of that key
     }
-    
+
     // only process for SHIFT/ALT & no CTRL or GUI mods
     if (saved_mods & MOD_MASK_CG)  // CTRL or GUI/CMD?
         return true; // do default if CTRL or GUI/CMD are down
@@ -296,7 +296,8 @@ goto_register_key_trap_and_return: // ##Warning
                     return_state = false; // stop processing this record.
                 }
                 break;
-            case KC_QUOT: // SHIFT = ], ALT=», ALT+SHIFT=›
+//PQ        case KC_QUOT: // SHIFT = ], ALT=», ALT+SHIFT=›
+            case ERQU:    // SHIFT = ], ALT=», ALT+SHIFT=›
                 if (!saved_mods) {
                     tap_code16(R_quote); // send ' (or 」in Japanese mode)
                     return_state = false; // done with this record.
@@ -315,7 +316,8 @@ goto_register_key_trap_and_return: // ##Warning
                     return_state = false; // done with this record.
                 }
                 break;
-            case KC_DQUO:  // SHIFT = [ (linger=[|]), ALT=«, ALT+SHIFT=‹
+//PQ        case KC_DQUO:  // SHIFT = [ (linger=[|]), ALT=«, ALT+SHIFT=‹
+            case ELQU:     // SHIFT = [ (linger=[|]), ALT=«, ALT+SHIFT=‹
                 if (!saved_mods) {
                     register_linger_key(L_quote); // send " (or 「 in Japanese mode)
                     return_state = false; // done with this record.
@@ -405,13 +407,13 @@ goto_register_key_trap_and_return: // ##Warning
 #endif
                     ) // can this linger?
                     break; // N: do default thing
-#ifndef KEY_OVERRIDE_ENABLE
+#if !defined(KEY_OVERRIDE_ENABLE) && !defined(MYMODMORPH)
 goto_linger_and_return: // ##Warning
 #endif
                 register_linger_key(keycode); //
                 return_state = false; // stop processing this record.
                 break;
-                
+
             case SK_Lux: // switch to linux (or Win if not defined)
 #ifdef INCLUDE_HD_Lux
                 user_config.OSIndex = OS_Lux; // for Linux Semkeys
@@ -481,7 +483,7 @@ storeSettings:
         preprior_keycode = prior_keycode; // look back 2 keystrokes?
         prior_keycode = keycode; // this keycode is now stripped of mods+taps
 #endif
-        
+
     } else { // key up event
 //  when I can get this to work with HRMs properly, this will strictly enforce rolling.
 //        if (keycode == prior_keycode) // releasing adaptive?

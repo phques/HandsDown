@@ -1,0 +1,1 @@
+/Users/philippe/qmk_userspace/keyboards/zsa/voyager/keymaps/handsDown/rules.mk
