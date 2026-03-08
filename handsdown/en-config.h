@@ -74,20 +74,23 @@
 //
 //    Base (alpha) Layer Enthium (HRMs /+ thumb mods)
 //       Define SWAP_QB (above) to swap Q and B
+//
 // Modified version, using same symbols as PM.
+// Note that I followed the convention of the other layouts for the thumbs home position.
+//
 //            ╭─────────────────────╮                 ╭─────────────────────╮
 //    ESC     │  Q/b Y   O   U   #$ │ L_CFG     L_NUM │   X   L   D   P   Z │ TG(L_FUN)
 //     B/q    │  C   I   A   E   -+ | (             ) |   K   H   T   N   S │ W
 //    tab     │  '[  ,;  .:  "]  /* │ [ copy   pste ] │   J   M   G   F   V │ Caps
-//            ╰───────────╮ spc bsp │ &             | │  ret  R  ╭──────────╯
+//            ╰───────────╮ bsp spc │ &             | │   R  ret ╭──────────╯
 //          left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
-// Original version (in the 'boxes')
+// Original version symbols
 //            ╭─────────────────────╮                 ╭─────────────────────╮
 //    ESC     │  Q   Y   O   U   =  │ L_CFG     L_NUM │   X   L   D   P   Z │
 //     B      │  C   I   A   E   -  | (             ) |   K   H   T   N   S │ W
 //    tab     │  '   ,   .   ;   /  │ [ copy   pste ] │   J   M   G   F   V │
-//            ╰───────────╮ spc bsp │ &             | │  ret  R  ╭──────────╯
+//            ╰───────────╮ bsp spc │ &             | │   R  ret ╭──────────╯
 //          left rght app ╰─────────╯                 ╰──────────╯ tgLN  up  dn
 //
 // For small boards, Q (LT3) & Z (LT4) are (also) on the sym layer
@@ -145,14 +148,14 @@
 #define HD_LH5 KC_DOWN
 #define HD_LH4 KC_UP
 #define HD_LH3 KC_APP
-#define HD_LH1 HD_BSPC
-#define HD_LH2 HD_SPC
+#define HD_LH1 HD_SPC
+#define HD_LH2 HD_BSPC
 #define HD_LH0 LT(L_CFG,KC_MUTE)
 #define HD_LHA SK_DKT8 // Dictate (speech to text)
 #define HD_RHA SK_AIVC // AI voice control (Siri/Cortana)
 #define HD_RH0 LT(L_CFG,KC_MPLY)
-#define HD_RH1 HD_ENT
-#define HD_RH2 HD_R
+#define HD_RH1 HD_R
+#define HD_RH2 HD_ENT
 #define HD_RH3 TG(L_NUM)
 #define HD_RH4 KC_LEFT
 #define HD_RH5 KC_RGHT

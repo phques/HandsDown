@@ -117,7 +117,7 @@ extern rgblight_config_t rgblight_config;
 // mi = mithril (R on thumb)
 // xr = weird test-bed (R on thumb)
 
-#define HD_CONFIG "handsdown/en-config.h"
+#define HD_CONFIG "handsdown/pm-config.h"
 
 //
 // HD_CONFIG defines all variation dependent constants/files/keycodes, etc.
@@ -183,7 +183,7 @@ extern rgblight_config_t rgblight_config;
 // #define SQUO_SA A(S(KC_3)) // ‹
 
 // Define left and right quote, normally ' and ", but swapped in some variations
-#define REVERSED_QUOTES
+//#define REVERSED_QUOTES
 
 #ifndef REVERSED_QUOTES
 #define JLQU KC_LBRC    //  「 (via " in Japanese mode)

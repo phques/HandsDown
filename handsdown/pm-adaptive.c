@@ -162,7 +162,9 @@ bool process_adaptive_key(uint16_t keycode, const keyrecord_t *record) {
                     tap_code(KC_BSPC); // remove F
                     tap_code(KC_S);  // FP=SP (SP 860x more common)
                     break; // Send P normally
-                case KC_P: // eliminate DG sfb
+                //##PQ ?? I believe this should be DP -> DG
+                //case KC_P: // eliminate DG sfb
+                case KC_D: // eliminate DG sfb
                     tap_code(KC_G);  //
                     return_state = false; // done.
                     break; //

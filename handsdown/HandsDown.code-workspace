@@ -5,6 +5,9 @@
 		},
 		{
 			"path": "../../../keyboards/zsa/voyager/keymaps/handsDown"
+		},
+		{
+			"path": "../../../keyboards/xbows/nature/keymaps/handsDown"
 		}
 	],
 	"settings": {}

@@ -246,12 +246,15 @@
 #define HD_their_keys HD_T, HD_R  // TYPE "their" #6 (R on same finger in Neu)
 #define HD_theyre_keys HD_T, HD_F // "they're"  (R on same finger in Neu)
 #define HD_they_keys  HD_T, HD_W  // "they" #23 + 've (near they)
-#define HD_theyll_keys HD_T, HD_M // "they'll" #23 + 've (M is easier to combo, also in We'll)
-#define HD_theyd_keys HD_T, HD_F  // "they'd" #23 + 've (no rationale for this, but no SFCombo)
+//PQ #define HD_theyll_keys HD_T, HD_M // "they'll" #23 + 've (M is easier to combo, also in We'll)
+#define HD_theyll_keys HD_T, HD_L // "they'll" #23 + 've (PQ L is easier to combo, also in We'll)
+//PQ DUP! #define HD_theyd_keys HD_T, HD_F  // "they'd" #23 + 've (no rationale for this, but no SFCombo)
+#define HD_theyd_keys HD_T, HD_P  // "they'd" #23 + 've (no rationale for this, but no SFCombo)
 
 // deictics. Are these really necessary? (never used them regularly)
-//#define HD_there_keys HD_T, HD_F  // TYPE "there" #7 + 's
-//#define HD_here_keys  HD_H, HD_F  // TYPE "here" #5 + 's
+//PQ #define HD_there_keys HD_T, HD_F  // TYPE "there" #7 + 's
+#define HD_there_keys HD_T, HD_M  // TYPE "there" #7 + 's
+#define HD_here_keys  HD_H, HD_F  // TYPE "here" #5 + 's
 
 #ifdef EN_W_PRONOUNS
 #define HD_where_keys HD_V, HD_R  // "where" + 's

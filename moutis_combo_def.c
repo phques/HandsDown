@@ -532,6 +532,12 @@ combo_t key_combos[] = {
 #ifdef HD_theyre_keys
     [HC_theyre_7gram] = COMBO_ACTION(H_theyre_combo), // TYPE "they're"
 #endif
+#ifdef HD_theyll_keys
+    [HC_theyll_7gram] = COMBO_ACTION(H_theyll_combo), // TYPE "they'll" #23 + 've
+#endif
+#ifdef HD_theyd_keys
+    [HC_theyd_6gram] = COMBO_ACTION(H_theyd_combo), // TYPE "they'd" #23 + 've
+#endif
 
 #ifdef HD_there_keys
     [HC_there_5gram] = COMBO_ACTION(H_there_combo), // TYPE "there" #7

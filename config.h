@@ -35,8 +35,12 @@
 
 // Pick good defaults for enabling homerow modifiers
 //#define HOLD_ON_OTHER_KEY_PRESS
-#define PERMISSIVE_HOLD
+//#define PERMISSIVE_HOLD
 //#define IGNORE_MOD_TAP_INTERRUPT
+
+// PQ, having difficulty with mod-taps triggering when I want to roll, so trying these:
+//     *No* PERMISSIVE_HOLD
+#define CHORDAL_HOLD
 
 #ifdef TAP_CODE_DELAY
 #undef TAP_CODE_DELAY
@@ -60,7 +64,7 @@
     #define COMBO_HOLD (TAPPING_TERM) // time to hold to trigger delayed combo
 #endif
 
-//#define EN_HDIGRAPH_COMBOS // English H-Digraph combos (Th,Ch,Wh,Sh,Gh,Ph,Sch)
+#define EN_HDIGRAPH_COMBOS // English H-Digraph combos (Th,Ch,Wh,Sh,Gh,Ph,Sch)
 #define EN_PRONOUN_COMBOS // English First Person pronoun combos (I, I'm, I've I'd I'll etc) (184 bytes on AVR)
 #define EN_PRONOUN_COMBOS_ALL  // combos for you('ve), We('ve), They('ve) etc. (616 bytes on AVR)
 #define EN_W_PRONOUNS
