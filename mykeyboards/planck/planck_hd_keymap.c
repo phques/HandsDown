@@ -19,7 +19,7 @@
  *        `-----------------------------------------------------------------------------------'
  */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-#ifdef L_QWERTY
+#ifdef HAS_QWERTY_LAYER
 [L_QWERTY] = LAYOUT(
     KC_Q, KC_W, KC_E, KC_R, KC_T, LT(L_MEDIA_KBD,KC_MUTE), LT(L_MEDIA_KBD,KC_MPLY), KC_Y, KC_U, KC_I, KC_O, KC_P,
     RCTL_T(KC_A), RALT_T(KC_S), RGUI_T(KC_D), RSFT_T(KC_F), LT(L_NUMPAD,KC_G), LT(L_NUMPAD,KC_TAB), KC_QUOT, LT(L_FN_NUM,KC_H), RSFT_T(KC_J), RGUI_T(KC_K), RALT_T(KC_L), RCTL_T(KC_SCLN),
@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, SK_FIND, ____, TG(L_NAV), SK_WORDPRV, KC_LEFT, KC_DOWN, KC_RGHT, SK_WORDNXT,
     SK_UNDO, SK_CUT, SK_COPY, SK_PSTE, SK_PSTM, ____, ____, SK_DOCEND, KC_END, KC_DOWN, KC_LALT, SK_PARANXT,
             ____, ____, SK_DELWDL, SK_DELWDR, ____, ____,     SK_ZOOMRST, SK_HISTPRV, SK_HISTNXT, ____, SK_ZOOMOUT, SK_ZOOMIN),
-    
+
 
 [L_MEDIA_KBD] = LAYOUT(
     _no_, EE_CLR, AG_SWAP, CG_SWAP, LCA(KC_DEL), ____, RGB_TOG, SK_KILL, KC_NUM, KC_EJCT, _no_, SK_ZOOMRST,

@@ -21,7 +21,7 @@
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-#ifdef L_QWERTY
+#ifdef HAS_QWERTY_LAYER
 	 [L_QWERTY] = LAYOUT_ffkb(
     KC_TRNS, KC_Q, KC_W, KC_E, KC_R, KC_T,                                 KC_Y, KC_U, KC_I, KC_O, KC_P, KC_TRNS,
     KC_TRNS, RCTL_T(KC_A), RALT_T(KC_S), RGUI_T(KC_D), RSFT_T(KC_F), LT(L_NUMPAD,KC_G),                                 LT(L_FN_NUM,KC_H), RSFT_T(KC_J), RGUI_T(KC_K), RALT_T(KC_L), RCTL_T(KC_SCLN), KC_TRNS,
@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      HD_LM5, HD_LM4, HD_LM3, HD_LM2, HD_LM1, HD_LM0,                                 HD_RM0, HD_RM1, HD_RM2, HD_RM3, HD_RM4, HD_RM5,
      HD_LB5, HD_LB4, HD_LB3, HD_LB2, HD_LB1, HD_LB0,                                 HD_RB0, HD_RB1, HD_RB2, HD_RB3, HD_RB4, HD_RB5,
                               HD_LH0, HD_LH3, HD_LH2, HD_LH1,                HD_RH1, HD_RH2, HD_RH3, HD_RH0),
-    
+
     [L_SYM] = LAYOUT(
     LS_LT5, LS_LT4, LS_LT3, LS_LT2, LS_LT1, LS_LT0,                                 LS_RT0, LS_RT1, LS_RT2, LS_RT3, LS_RT4, LS_RT5,
     LS_LM5, LS_LM4, LS_LM3, LS_LM2, LS_LM1, LS_LM0,                                 LS_RM0, LS_RM1, LS_RM2, LS_RM3, LS_RM4, LS_RM5,
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     LN_LM5, LN_LM4, LN_LM3, LN_LM2, LN_LM1, LN_LM0,                                 LN_RM0, LN_RM1, LN_RM2, LN_RM3, LN_RM4, LN_RM5,
     LN_LB5, LN_LB4, LN_LB3, LN_LB2, LN_LB1, LN_LB0,                                 LN_RB0, LN_RB1, LN_RB2, LN_RB3, LN_RB4, LN_RB5,
                             LN_LH0, LN_LH3, LN_LH2, LN_LH1,                LN_RH1, LN_RH2, LN_RH3, LN_RH0),
-    
+
     [L_NAV] = LAYOUT(
     LV_LT5, LV_LT4, LV_LT3, LV_LT2, LV_LT1, LV_LT0,                                 LV_RT0, LV_RT1, LV_RT2, LV_RT3, LV_RT4, LV_RT5,
     LV_LM5, LV_LM4, LV_LM3, LV_LM2, LV_LM1, LV_LM0,                                 LV_RM0, LV_RM1, LV_RM2, LV_RM3, LV_RM4, LV_RM5,

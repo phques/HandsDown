@@ -28,10 +28,13 @@ typedef struct {
     uint32_t altshift;
 } modmorph_t;
 
+#define HAS_QWERTY_LAYER
 
 // enum my_layers for layout layers
 enum my_layers {// must be difined before semantickeys.h
-//    L_QWERTY,   // QWERTY compatibility layer
+#ifdef HAS_QWERTY_LAYER
+    L_QWERTY,   // QWERTY compatibility layer
+#endif
     L_HD,       // Hands Down Alpha layer
     L_SYM,      // symbols, punctuation, off-map alphas
     L_FUN,      // function (left) & number rows (right)
@@ -40,7 +43,7 @@ enum my_layers {// must be difined before semantickeys.h
     L_CFG,      // Media/Consumer controls; Keyboard settings
     L_count
 };
-#ifdef L_QWERTY
+#ifdef HAS_QWERTY_LAYER
 #define L_BASELAYER HD_L_QWERTY
 #else
 #define L_BASELAYER HD_L_ALPHA

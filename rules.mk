@@ -19,6 +19,11 @@ COMBO_ENABLE = yes      # chording
 LTO_ENABLE = yes		# optimize at link time
 EXTRAFLAGS += -flto
 
+#PQ runnning out room on xbows nature
+//MAGIC_ENABLE = no	    # do I need anything from this!!??
+//EXTRAKEY_ENABLE = no  # see above
+RGB_MATRIX_ENABLE = no
+
 SRC += moutis.c
 
 CFLAGS += -fcommon

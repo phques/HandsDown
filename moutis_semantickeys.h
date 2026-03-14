@@ -9,19 +9,19 @@
 
  Phase 1: simple 1:1 keystroke mapping
    complete.
- 
+
  Phase 2: Requires w/Sevanteri's early combos. (>QMK 14.0)
  Integrate all combo and keymap processing so they both queue
  SemKeys to be handled in process_record_user, reducing the code
  and simplifying maintenance.
     complete.
- 
+
  Phase 3: expand to multi-keystrokes, which would enable sending
  different compose sequences based on platform (diacritics),
  and possibly facilitate support for other editors (vim/emacs)?
- 
+
  Phase 4: use in Hands Down Polyglot for all non-ascii glyphs
- 
+
  */
 
 /*
@@ -32,7 +32,7 @@
  */
 enum my_keycodes {
     HD_AdaptKeyToggle = SAFE_RANGE, // Adaptive Keys Toggle on/off
-#ifdef L_QWERTY
+#ifdef HAS_QWERTY_LAYER
     HD_L_QWERTY, // base layer switch
 #endif
     HD_L_ALPHA,

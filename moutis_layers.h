@@ -94,14 +94,14 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 
 /* L_FUN LAYER K-key row (left) and Num row (right)
          ╭──────────────────────────────────────────╮               ╭──────────────────────────────────────────╮
- RGB_TOG │ F13      F7      F8      F9      F10     │               │ /       7       8       9       -        │ RGB_MOD
- RGB_VAI │ C_T(F14) A_T(F1) G_T(F2) S_T(F3) F11     |               | *       S_T(1)  G_T(2)  A_T(3)  C_T(+)   │ RGB_HUI
- RGB_VAD │ F15      F4      F5      F6      F12     │ __ __   __ __ │ ,       4       5       6       =        │ RGB_HUD
+ RM_TOGG │ F13      F7      F8      F9      F10     │               │ /       7       8       9       -        │ RM_NEXT
+ RM_VALU │ C_T(F14) A_T(F1) G_T(F2) S_T(F3) F11     |               | *       S_T(1)  G_T(2)  A_T(3)  C_T(+)   │ RM_HUEU
+ RM_VALD │ F15      F4      F5      F6      F12     │ __ __   __ __ │ ,       4       5       6       =        │ RM_HUED
          ╰────────────────╮ __      __      INS     │ __         __ │ 0       .       TG(LN)  ╭────────────────╯
               __      __  ╰─────────────────────────╯               ╰─────────────────────────╯ __       __
 */
 
-#define LF_LT5 RGB_TOG
+#define LF_LT5 RM_TOGG // was RGB_TOG
 #define LF_LT4 KC_F13
 #define LF_LT3 KC_F7
 #define LF_LT2 KC_F8
@@ -112,9 +112,9 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 #define LF_RT2 KC_8
 #define LF_RT3 KC_9
 #define LF_RT4 KC_MINS
-#define LF_RT5 RGB_MOD
+#define LF_RT5 RM_NEXT // was RGB_MOD
 
-#define LF_LM5 RGB_VAI
+#define LF_LM5 RM_VALU // was RGB_VAI
 #define LF_LM4 LCTL_T(KC_F14)
 #define LF_LM3 LALT_T(KC_F1)
 #define LF_LM2 LGUI_T(KC_F2)
@@ -125,9 +125,9 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 #define LF_RM2 RGUI_T(KC_2)
 #define LF_RM3 RALT_T(KC_3)
 #define LF_RM4 RCTL_T(KC_PPLS)
-#define LF_RM5 RGB_HUI
+#define LF_RM5 RM_HUEU // was RGB_HUI
 
-#define LF_LB5 RGB_VAD
+#define LF_LB5 RM_VALD // was RGB_VAD
 #define LF_LB4 KC_F15
 #define LF_LB3 KC_F4
 #define LF_LB2 KC_F5
@@ -142,7 +142,7 @@ __ │    °      ]       )        }         ·     │ __  __   __  __  │    
 #define LF_RB2 KC_5
 #define LF_RB3 KC_6
 #define LF_RB4 KC_EQL
-#define LF_RB5 RGB_HUD
+#define LF_RB5 RM_HUED // was RGB_HUD
 
 #define LF_LH5 KC_F23 // also left encoder CCW
 #define LF_LH4 KC_F24 // also left encoder CW
@@ -299,9 +299,9 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 
 /*   L_CFG Keyboard Configuration (left) and Media Settings (right)
          ╭───────────────────────────────────────────────╮                            ╭────────────────────────────────────────────────╮
-      __ │  SK_Lux  SK_Win  SK_Mac  QK_RBT      SK_KILL  │                            │ SK_ZOOMRST KC_NUM  KC_EJCT KC_LALT (C(A(del))) │ RGB_MOD
- RGB_VAI │  HD_AKTg L_0     L_1     KC_VOLU     KC_BRIU  |                            | SK_ZOOMOUT KC_MPRV KC_MUTE KC_MNXT EE_CLR      │ RGB_SAI
- RGB_HUI │  QK_BOOT AG_SWAP AG_NORM KC_VOLD     KC_BRID  │ RGB_VAD  __    __  RGB_SAD │ SK_ZOOMIN  KC_MRWD KC_MPLY KC_MFFD QK_BOOT     │ RGB_HUD
+      __ │  SK_Lux  SK_Win  SK_Mac  QK_RBT      SK_KILL  │                            │ SK_ZOOMRST KC_NUM  KC_EJCT KC_LALT (C(A(del))) │ RM_NEXT
+ RM_VALU │  HD_AKTg L_0     L_1     KC_VOLU     KC_BRIU  |                            | SK_ZOOMOUT KC_MPRV KC_MUTE KC_MNXT EE_CLR      │ RM_SATU
+ RM_HUEU │  QK_BOOT AG_SWAP AG_NORM KC_VOLD     KC_BRID  │ RM_VALD  __    __  RM_SATD │ SK_ZOOMIN  KC_MRWD KC_MPLY KC_MFFD QK_BOOT     │ RM_HUED
          ╰──────────────────╮ __    SK_ZOOMOUT SK_ZOOMIN │ __                     __  │ SK_ZOOMIN  SK_ZOOMOUT  --  ╭───────────────────╯
                     __   __ ╰────────────────────────────╯                            ╰────────────────────────────╯   __     __
 */
@@ -317,11 +317,11 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_RT2 KC_EJCT
 #define LC_RT3 KC_LALT
 #define LC_RT4 LCA(KC_DEL)
-#define LC_RT5 RGB_MOD
+#define LC_RT5 RM_NEXT // was RGB_MOD
 
-#define LC_LM5 RGB_VAI
+#define LC_LM5 RM_VALU // was RGB_VAI
 #define LC_LM4 HD_AdaptKeyToggle
-#ifdef HD_L_QWERTY
+#ifdef HAS_QWERTY_LAYER
 #define LC_LM3 HD_L_QWERTY
 #define LC_LM2 HD_L_ALPHA
 #else  // Only one base alpha, so no switch base layer
@@ -335,24 +335,24 @@ __ │   UNDO     CUT     COPY    PSTE    FAGN  │ ESC TAB   __  __ │  DOCEND
 #define LC_RM2 KC_MUTE
 #define LC_RM3 KC_MNXT
 #define LC_RM4 EE_CLR
-#define LC_RM5 RGB_SAI
+#define LC_RM5 RM_SATU // was RGB_SAI
 
-#define LC_LB5 RGB_HUI
+#define LC_LB5 RM_HUEU // was RGB_HUI
 #define LC_LB4 QK_BOOT
 #define LC_LB3 AG_SWAP
 #define LC_LB2 AG_NORM
 #define LC_LB1 KC_VOLD
 #define LC_LB0 KC_BRID
-#define LC_LBA RGB_VAD
+#define LC_LBA RM_VALD // was RGB_VAD
 #define LC_LBB SK_ZOOMIN
 #define LC_RBB SK_ZOOMOUT
-#define LC_RBA RGB_SAD
+#define LC_RBA RM_SATD // was RGB_SAD
 #define LC_RB0 SK_ZOOMIN
 #define LC_RB1 KC_MRWD
 #define LC_RB2 KC_MPLY
 #define LC_RB3 KC_MFFD
 #define LC_RB4 QK_BOOT
-#define LC_RB5 RGB_HUD
+#define LC_RB5 RM_HUED // was RGB_HUD
 
 #define LC_LH5 KC_F13 // also left encoder CCW (remap on host)
 #define LC_LH4 KC_F14 // also left encoder CW  (remap on host)
